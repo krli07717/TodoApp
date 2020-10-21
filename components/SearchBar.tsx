@@ -10,7 +10,6 @@ const SearchBar: React.FunctionComponent<SearchBarProp> = ({onSearchChange}) => 
 			<input
             type="Search"
             placeholder="Search here"
-            value=""
             onChange={onSearchChange}
       />
 		</>

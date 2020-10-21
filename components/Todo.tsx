@@ -13,9 +13,9 @@ const Todo: React.FunctionComponent<TodoProps> = ({caption, description, addedDa
 		<>
 			<h3>{caption}</h3>
 			<p>{description}</p>
-			<p>Added{addedDate}</p>
-			<p>Due: {due}</p>
-			<p>Done?: {isCompleted}</p>
+			<h6>Added: {addedDate}</h6>
+			<h6>Due: {due}</h6>
+			<p>Done?: {isCompleted.toString()}</p>
 		</>
 	);
 };

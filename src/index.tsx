@@ -4,8 +4,17 @@ import TopBar from '../components/TopBar';
 import TodosTable from '../components/TodosTable';
 import AddTodoModal from '../components/AddTodoModal';
 
-type DoneState = 'All Task' | 'Done' | 'To Do';
-type SortMethodState = 'Date Added' | 'Caption' | 'Due';
+// enum DoneState {
+// 	AllTask = 'All Task',
+// 	Done = 'Done',
+// 	ToDo = 'To Do',
+// }
+
+// enum SortMethodState {
+// 	DateAdded = 'Date Added',
+// 	Caption = 'Caption',
+// 	Due = 'Due',
+// }
 
 interface ITodoProps {
 	caption: string;
@@ -17,9 +26,21 @@ interface ITodoProps {
 
 const App = () => {	
 
-	const [doneState, setDoneState] = useState<DoneState>('All Task')
+	const selectByDone = (option: React.FormEvent<HTMLSelectElement>) => {
+		setDoneState(option.currentTarget.value);
+	}
 
-	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
+	const selectSortMethod = (option: React.FormEvent<HTMLSelectElement>) => {
+		setSortMethodState(option.currentTarget.value);
+	}
+
+	const onSearchChange = (event: React.FormEvent<HTMLInputElement>) => {
+		setSearchText(event.currentTarget.value);
+	}
+
+	const [doneState, setDoneState] = useState<string>('All Task')
+
+	const [sortMethodState, setSortMethodState] = useState<string>('Date Added')
 
 	const [searchText, setSearchText] = useState<string>('')
 
@@ -52,13 +73,19 @@ const App = () => {
 				//due: 'select Date'
 				isCompleted: false,
 			},
+			{
+				caption: `Ay Bro I'm sorted to top`,
+				description: 'Not writing caption',
+				//addedDate: new Date,
+				//due: 'select Date'
+				isCompleted: false,
+			},
 		])
 
 
 	return (
 			<>
-			  {// <TopBar SelectByDone={} SelectSortMethod={} onSearchChange={} />
-			  }
+			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
 			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} TodosArray={todosArray} />
 			  {//<AddTodoModal/>
 			  }
@@ -71,3 +98,4 @@ ReactDOM.render(
   <App />,
   document.getElementById("root")
 );
+
