@@ -10,7 +10,7 @@ const Sort: React.FunctionComponent<SortProps> = ({SelectByDone, SelectSortMetho
 			<>
 			<label >Sort by:</label>
 				<select	onChange={SelectByDone}>
-			    <option value="All Task">All Task</option>
+			    <option value="All Tasks">All Tasks</option>
 			    <option value="Done">Done</option>
 			    <option value="To Do">To Do</option>
 		    </select>

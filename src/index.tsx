@@ -4,17 +4,8 @@ import TopBar from '../components/TopBar';
 import TodosTable from '../components/TodosTable';
 import AddTodoModal from '../components/AddTodoModal';
 
-// enum DoneState {
-// 	AllTask = 'All Task',
-// 	Done = 'Done',
-// 	ToDo = 'To Do',
-// }
-
-// enum SortMethodState {
-// 	DateAdded = 'Date Added',
-// 	Caption = 'Caption',
-// 	Due = 'Due',
-// }
+type DoneState = 'All Tasks' | 'Done' | 'To Do';
+type SortMethodState = 'Date Added' | 'Caption' | 'Due'; 
 
 interface ITodoProps {
 	caption: string;
@@ -27,20 +18,24 @@ interface ITodoProps {
 const App = () => {	
 
 	const selectByDone = (option: React.FormEvent<HTMLSelectElement>) => {
-		setDoneState(option.currentTarget.value);
+		setDoneState(option.currentTarget.value as DoneState);
 	}
 
 	const selectSortMethod = (option: React.FormEvent<HTMLSelectElement>) => {
-		setSortMethodState(option.currentTarget.value);
+		setSortMethodState(option.currentTarget.value as SortMethodState);
 	}
 
 	const onSearchChange = (event: React.FormEvent<HTMLInputElement>) => {
 		setSearchText(event.currentTarget.value);
 	}
 
-	const [doneState, setDoneState] = useState<string>('All Task')
+	// const addTodo = () => {
+	// 	setTodosArray()
+	// }
 
-	const [sortMethodState, setSortMethodState] = useState<string>('Date Added')
+	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
+
+	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
 
 	const [searchText, setSearchText] = useState<string>('')
 
@@ -74,7 +69,7 @@ const App = () => {
 				isCompleted: false,
 			},
 			{
-				caption: `Ay Bro I'm sorted to top`,
+				caption: `Ay I'm sorted to top`,
 				description: 'Not writing caption',
 				//addedDate: new Date,
 				//due: 'select Date'
@@ -86,9 +81,9 @@ const App = () => {
 	return (
 			<>
 			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
-			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} TodosArray={todosArray} />
-			  {//<AddTodoModal/>
-			  }
+			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
+			  						TodosArray={todosArray} />
+			  <AddTodoModal/>
 		  </>
 	  );
 };
@@ -98,4 +93,3 @@ ReactDOM.render(
   <App />,
   document.getElementById("root")
 );
-
