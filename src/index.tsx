@@ -29,16 +29,6 @@ const App = () => {
 		setSearchText(event.currentTarget.value);
 	}
 
-	// const addTodo = () => {
-	// 	setTodosArray()
-	// }
-
-	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
-
-	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
-
-	const [searchText, setSearchText] = useState<string>('')
-
 	const [todosArray, setTodosArray] = useState<ITodoProps[]>([
 			{
 				caption: 'Buy milk',
@@ -77,13 +67,39 @@ const App = () => {
 			},
 		])
 
+	const addNewTodoToArray = (childNewForm: ITodoProps) => {
+		console.log('childNewForm:');
+		console.log(childNewForm); //if is not initialNewForm, then success passing data from child to parent component 
+		// setNewFormElements(childNewForm); //Problem here updating newform object
+		console.log('todosArray - nothing done')
+		console.log(todosArray);
+		const newTodosArray = todosArray;
+		console.log('newTodosArray - let = todosArray')
+		console.log(newTodosArray);
+		newTodosArray.push(childNewForm);
+		console.log('newTodosArray - after push')
+		console.log(newTodosArray);
+		console.log('todosArray - after new is pushed')
+		console.log(todosArray);
+		setTodosArray([...todosArray, ...newTodosArray]); //NOT 'setTodosArray(newTodosArray)'. Super important
+		console.log('newTodosArray - reset array')
+		console.log(newTodosArray);
+		console.log('todosArray - reset array');
+		console.log(todosArray);
+	}
+
+	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
+
+	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
+
+	const [searchText, setSearchText] = useState<string>('')
 
 	return (
 			<>
 			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
 			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
 			  						TodosArray={todosArray} />
-			  <AddTodoModal/>
+			  <AddTodoModal addNewTodoToArray={addNewTodoToArray} />
 		  </>
 	  );
 };
@@ -93,3 +109,5 @@ ReactDOM.render(
   <App />,
   document.getElementById("root")
 );
+
+
