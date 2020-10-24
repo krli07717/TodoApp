@@ -4,8 +4,8 @@ import Todo from './Todo';
 interface ITodoProps {
 	caption: string;
 	description: string;
-	addedDate?: Date;
-	due?: Date;
+	addedDate: string;
+	due: string;
 	isCompleted: boolean;
 }
 

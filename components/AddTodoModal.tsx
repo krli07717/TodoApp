@@ -4,8 +4,8 @@ import {useRef} from 'react';
 interface ITodoProps {
 	caption: string;
 	description: string;
-	addedDate?: Date;
-	due?: Date;
+	addedDate: string;
+	due: string;
 	isCompleted: boolean;
 }
 
@@ -33,18 +33,24 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 			<button type="button" onClick={()=>{
 				//to avoid 'error: object is possibly null'
 				let newFormElements: ITodoProps | string;
-				if ( newTitleValue && newDescriptionValue && newIsDone && newTitleValue.current && newDescriptionValue.current && newIsDone.current) {
+				if ( newTitleValue && newDescriptionValue && newIsDone && newDueDate && newDueDate.current && newTitleValue.current && newDescriptionValue.current && newIsDone.current) {
 					newFormElements = {
 							caption: newTitleValue.current.value,
 							description: newDescriptionValue.current.value,
-							// due: newDueDate.current.value,
+							addedDate: (new Date()).toLocaleDateString('zh-TW'),
+							due: newDueDate.current.value,
 							isCompleted: Boolean(newIsDone.current.checked),
-					} 
+					};
 				} else {
 					newFormElements = 'Failure building Form. Something is null.'
 				}
-				if (typeof newFormElements !== 'string') {
+				if (typeof newFormElements !== 'string' && (newTitleValue && newDescriptionValue && newIsDone && newTitleValue.current && newDescriptionValue.current && newIsDone.current)) {
 					addNewTodoToArray(newFormElements);
+					// reset form to empty
+					newTitleValue.current.value = '';
+					description: newDescriptionValue.current.value = '';
+					if (newDueDate && newDueDate.current) {newDueDate.current.value = ''}
+					newIsDone.current.checked = false;
 				}
 			}
 			}>Add Todo</button>

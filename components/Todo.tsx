@@ -3,8 +3,8 @@ import * as React from 'react';
 interface TodoProps {
 	caption: string;
 	description: string;
-	addedDate?: Date;
-	due?: Date;
+	addedDate: string;
+	due: string;
 	isCompleted: boolean;
 }
 
