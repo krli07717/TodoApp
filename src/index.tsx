@@ -8,6 +8,8 @@ type DoneState = 'All Tasks' | 'Done' | 'To Do';
 type SortMethodState = 'Date Added' | 'Caption' | 'Due'; 
 
 interface ITodoProps {
+	key: string;
+	index: string;
 	caption: string;
 	description: string;
 	addedDate: string;
@@ -16,6 +18,12 @@ interface ITodoProps {
 }
 
 const App = () => {	
+
+	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
+
+	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
+
+	const [searchText, setSearchText] = useState<string>('')
 
 	const selectByDone = (option: React.FormEvent<HTMLSelectElement>) => {
 		setDoneState(option.currentTarget.value as DoneState);
@@ -51,7 +59,7 @@ const App = () => {
 		console.log(childNewForm); //if is not initialNewForm, then success passing data from child to parent component 
 		console.log('todosArray - nothing done')
 		console.log(todosArray);
-		const newTodosArray = [...todosArray, childNewForm]; //How one should update the array with useState
+		const newTodosArray = [...todosArray, childNewForm]; //How one should update the array with useState(?). todosArray is async, newTodosArray is sync
 		console.log('newTodosArray - setup')
 		console.log(newTodosArray);
 		console.log('todosArray - after new is setup')
@@ -63,17 +71,19 @@ const App = () => {
 		console.log(todosArray);
 	}
 
-	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
-
-	const [sortMethodState, setSortMethodState] = useState<SortMethodState>('Date Added')
-
-	const [searchText, setSearchText] = useState<string>('')
+	const toggleIsComplete = (index: ITodoProps["index"]) => {
+		console.log(`filtered by index${index}:`);
+		console.log(todosArray.filter(todo => todo.index === index)); //how to get updated todosArray since setTodosArray() does not update itself immediately? 
+		const newTodosArray = [...todosArray];
+		for (const todo of newTodosArray) {if (todo.index === index) {todo.isCompleted = !todo.isCompleted}}  //Async is fucked up
+		setTodosArray(newTodosArray);
+	}
 
 	return (
 			<>
 			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
 			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
-			  						TodosArray={todosArray} />
+			  						TodosArray={todosArray} toggleIsComplete={toggleIsComplete}/>
 			  <AddTodoModal addNewTodoToArray={addNewTodoToArray} />
 		  </>
 	  );
@@ -84,5 +94,3 @@ ReactDOM.render(
   <App />,
   document.getElementById("root")
 );
-
-

@@ -1,7 +1,9 @@
 import * as React from 'react';
-import {useRef} from 'react';
+import {useRef, useState} from 'react';
 
 interface ITodoProps {
+	key: string;
+	index: string;
 	caption: string;
 	description: string;
 	addedDate: string;
@@ -20,6 +22,8 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 	const newDueDate = useRef<HTMLInputElement>(null);
 	const newIsDone = useRef<HTMLInputElement>(null);
 
+	const [todoKey, setTodoKey] = useState(0)
+
 	return (
 		<form>
 			<input placeholder='Todo title' type='text' ref={newTitleValue}/>
@@ -31,10 +35,13 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 			<input name="isDone" type="checkbox" ref={newIsDone}/><label>Completed</label>
 			<br />
 			<button type="button" onClick={()=>{
-				//to avoid 'error: object is possibly null'
+				setTodoKey(todoKey + 1)
 				let newFormElements: ITodoProps | string;
+				//to avoid 'error: object is possibly null'
 				if ( newTitleValue && newDescriptionValue && newIsDone && newDueDate && newDueDate.current && newTitleValue.current && newDescriptionValue.current && newIsDone.current) {
 					newFormElements = {
+							key: todoKey.toString(),
+							index: todoKey.toString(),
 							caption: newTitleValue.current.value,
 							description: newDescriptionValue.current.value,
 							addedDate: (new Date()).toLocaleDateString('zh-TW'),

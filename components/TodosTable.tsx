@@ -2,6 +2,8 @@ import * as React from 'react';
 import Todo from './Todo';
 
 interface ITodoProps {
+	key: string;
+	index: string;
 	caption: string;
 	description: string;
 	addedDate: string;
@@ -14,9 +16,10 @@ interface TodosTableProps {
 	SelectSortMethodState: string;
 	SearchText: string;
 	TodosArray: ITodoProps[];
+	toggleIsComplete: (index: ITodoProps["index"]) => void;
 }
 
-const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray}) => {
+const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, toggleIsComplete}) => {
 	
 	if (SelectSortMethodState === 'Caption') {
 		TodosArray.sort((a, b) => {
@@ -48,10 +51,10 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 									return todoByDoneState;
 								}
 							})
-							.map(filteredTodo => {
-									const {caption, description, addedDate, due, isCompleted} = filteredTodo;
+							.map((filteredTodo) => {
+									const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
 									return (
-										<Todo caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} />
+										<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} toggleIsComplete={toggleIsComplete}/>
 									)
 									})
 						}
