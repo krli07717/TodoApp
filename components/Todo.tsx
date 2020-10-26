@@ -8,10 +8,11 @@ interface TodoProps {
 	addedDate: string;
 	due: string;
 	isCompleted: boolean;
-	toggleIsComplete: (key: string) => void;
+	ToggleIsComplete: (key: string) => void;
+	DeleteTodo: (key: string) => void;
 }
 
-const Todo: React.FunctionComponent<TodoProps> = ({key, index, caption, description, addedDate, due, isCompleted, toggleIsComplete}) => {
+const Todo: React.FunctionComponent<TodoProps> = ({key, index, caption, description, addedDate, due, isCompleted, ToggleIsComplete, DeleteTodo}) => {
 	return (
 		<>
 			<h3>{caption}</h3><button type="button">Expand</button>
@@ -19,9 +20,9 @@ const Todo: React.FunctionComponent<TodoProps> = ({key, index, caption, descript
 			<h6>Added_{addedDate}</h6>
 			<h6>Due_{due}</h6>
 			<p>Done_{isCompleted.toString()}</p>
-			<button type="button" onClick={()=>toggleIsComplete(index)}>Complete</button>
+			<button type="button" onClick={()=>ToggleIsComplete(index)}>Complete</button>
 			<button type="button">Edit</button>
-			<button type="button">Delete</button>
+			<button type="button" onClick={()=>DeleteTodo(index)}>Delete</button>
 		</>
 	);
 };

@@ -75,15 +75,26 @@ const App = () => {
 		console.log(`filtered by index${index}:`);
 		console.log(todosArray.filter(todo => todo.index === index)); //how to get updated todosArray since setTodosArray() does not update itself immediately? 
 		const newTodosArray = [...todosArray];
-		for (const todo of newTodosArray) {if (todo.index === index) {todo.isCompleted = !todo.isCompleted}}  //Async is fucked up
+		for (const todo of newTodosArray) {if (todo.index === index) {todo.isCompleted = !todo.isCompleted}}  //Async is screwed up
 		setTodosArray(newTodosArray);
+	}
+
+	const deleteTodo = (index: ITodoProps["index"]) => {
+		console.log(`todosArray before deleting, newTodosArray`);
+		console.log(todosArray);
+		const newTodosArray = [...todosArray];
+		for (let i = 0; i < newTodosArray.length; i++) {if (newTodosArray[i].index === index) {newTodosArray.splice(i,1);}} // not the best practice since accessing by index now takes O(n) instead of O(1)
+		setTodosArray(newTodosArray);
+		console.log(`todosArray after deleting, newTodosArray`);
+		console.log(todosArray);
+		console.log(newTodosArray);
 	}
 
 	return (
 			<>
 			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
 			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
-			  						TodosArray={todosArray} toggleIsComplete={toggleIsComplete}/>
+			  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo}/>
 			  <AddTodoModal addNewTodoToArray={addNewTodoToArray} />
 		  </>
 	  );

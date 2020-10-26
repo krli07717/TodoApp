@@ -16,12 +16,28 @@ interface TodosTableProps {
 	SelectSortMethodState: string;
 	SearchText: string;
 	TodosArray: ITodoProps[];
-	toggleIsComplete: (index: ITodoProps["index"]) => void;
+	ToggleIsComplete: (index: ITodoProps["index"]) => void;
+	DeleteTodo: (index: ITodoProps["index"]) => void;
 }
 
-const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, toggleIsComplete}) => {
+const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, ToggleIsComplete, DeleteTodo}) => {
 	
-	if (SelectSortMethodState === 'Caption') {
+	if (SelectSortMethodState === 'Date Added') {
+		TodosArray.sort((a, b) => parseInt(a.index) - parseInt(b.index));
+	} else if (SelectSortMethodState === 'Due') {
+		// sort all the NaNs to the last
+		TodosArray.sort((a, b) => {
+			let dateNumberA = new Date(a.due).getTime();
+			let dateNumberB = new Date(b.due).getTime();
+			if (isNaN(dateNumberB) || (isNaN(dateNumberA) && isNaN(dateNumberB))) {
+				return -1;
+			} else if (isNaN(dateNumberA)) {
+				return 1;
+			} else {
+				return dateNumberA - dateNumberB;
+			}
+		}); // this method of sorting dates may not be the best practice according to stackoverflow
+	} else if (SelectSortMethodState === 'Caption') {
 		TodosArray.sort((a, b) => {
 			let captionA = a.caption.toLowerCase();
 			let captionB = b.caption.toLowerCase();
@@ -32,8 +48,8 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 				return 1;
 			}
 			return 0;
-		});					
-	};
+		});
+	}
 
 	return (
 					<>
@@ -54,7 +70,8 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 							.map((filteredTodo) => {
 									const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
 									return (
-										<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} toggleIsComplete={toggleIsComplete}/>
+										<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} 
+										ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo}/>
 									)
 									})
 						}
