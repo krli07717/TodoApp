@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 
 interface TodoProps {
 	key: string;
@@ -13,16 +14,26 @@ interface TodoProps {
 }
 
 const Todo: React.FunctionComponent<TodoProps> = ({key, index, caption, description, addedDate, due, isCompleted, ToggleIsComplete, DeleteTodo}) => {
+	
+	const [expand, setExpand] = useState<boolean>(false);
+
 	return (
 		<>
-			<h3>{caption}</h3><button type="button">Expand</button>
-			<p>{description}</p>
-			<h6>Added_{addedDate}</h6>
-			<h6>Due_{due}</h6>
-			<p>Done_{isCompleted.toString()}</p>
+			<button type='button' onClick={() => {
+				setExpand(!expand);
+			}}>...</button><h3>{caption}</h3>
+			{
+				expand ? <>
+									<p>{description}</p>
+									<h6>Due_{(due !== "") ? new Date(due).toLocaleDateString('zh-TW', {month: '2-digit', day: '2-digit'}) : 'Due not set'}</h6>
+									<h6>Added_{addedDate.slice(5)}</h6>
+									<p>Done_{isCompleted.toString()}</p>
+								 </> : null
+			}
 			<button type="button" onClick={()=>ToggleIsComplete(index)}>Complete</button>
 			<button type="button">Edit</button>
 			<button type="button" onClick={()=>DeleteTodo(index)}>Delete</button>
+			<br/>
 		</>
 	);
 };

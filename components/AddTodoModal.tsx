@@ -15,9 +15,10 @@ interface AddTodoModalProps {
 	addNewTodoToArray: (childNewForm: ITodoProps) => void;
 	SetKeyOfNewTodo: () => void;
 	todoKey: Number;
+	ShowAddTodoForm: () => void;
 }
 
-const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToArray, SetKeyOfNewTodo, todoKey}) => {
+const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToArray, SetKeyOfNewTodo, todoKey, ShowAddTodoForm}) => {
 	
 	const newTitleValue = useRef<HTMLInputElement>(null);
 	const newDescriptionValue = useRef<HTMLTextAreaElement>(null);
@@ -45,7 +46,7 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 							index: todoKey.toString(),
 							caption: newTitleValue.current.value,
 							description: newDescriptionValue.current.value,
-							addedDate: (new Date()).toLocaleDateString('zh-TW'),
+							addedDate: (new Date()).toLocaleDateString('zh-TW', {year: "numeric", month:"2-digit", day:"2-digit", hour:"numeric", minute:"2-digit"}),
 							due: newDueDate.current.value,
 							isCompleted: Boolean(newIsDone.current.checked),
 					};
@@ -62,6 +63,9 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 				}
 			}
 			}>Add Todo</button>
+			<button type='button' onClick={()=>{
+				ShowAddTodoForm();
+			}}>Cancel</button>
 		</form>
 		);
 };

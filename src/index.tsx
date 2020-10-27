@@ -124,7 +124,7 @@ const App = () => {
 		  <br/>
 		  <ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm}/> 
 		  {showAddTodoFormState ? 
-		  <AddTodoModal addNewTodoToArray={addNewTodoToArray} SetKeyOfNewTodo={setKeyOfNewTodo} todoKey={todoKey}/> : null}
+		  <AddTodoModal addNewTodoToArray={addNewTodoToArray} SetKeyOfNewTodo={setKeyOfNewTodo} todoKey={todoKey} ShowAddTodoForm={showAddTodoForm}/> : null}
 	  </>
 	);
 };
