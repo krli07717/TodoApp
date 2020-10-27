@@ -10,11 +10,11 @@ interface TopBarProps {
 
 const TopBar: React.FunctionComponent<TopBarProps> = ({SelectByDone,SelectSortMethod,onSearchChange}) => {
 	return (
-			<>
-				<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
-				<SearchBar onSearchChange={onSearchChange} />
-			</>
-		);
+		<>
+			<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
+			<SearchBar onSearchChange={onSearchChange} />
+		</>
+	);
 };
 
 export default TopBar;

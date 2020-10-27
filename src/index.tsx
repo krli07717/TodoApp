@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
+import ShowTopBarButton from '../components/ShowTopBarButton';
+import ShowAddTodoFormButton from '../components/ShowAddTodoFormButton';
 import TopBar from '../components/TopBar';
 import TodosTable from '../components/TodosTable';
 import AddTodoModal from '../components/AddTodoModal';
@@ -54,6 +56,13 @@ const App = () => {
 			// },
 		])
 
+
+	const [todoKey, setTodoKey] = useState(0)
+
+	const setKeyOfNewTodo = () => {
+			setTodoKey(todoKey + 1);
+	}
+
 	const addNewTodoToArray = (childNewForm: ITodoProps) => {
 		console.log('childNewForm:');
 		console.log(childNewForm); //if is not initialNewForm, then success passing data from child to parent component 
@@ -69,6 +78,7 @@ const App = () => {
 		console.log(newTodosArray);
 		console.log('todosArray - reset array');
 		console.log(todosArray);
+		setShowAddTodoForm(!showAddTodoFormState);
 	}
 
 	const toggleIsComplete = (index: ITodoProps["index"]) => {
@@ -90,14 +100,33 @@ const App = () => {
 		console.log(newTodosArray);
 	}
 
+	const [showTopBarState, setShowTopBarState] = useState<boolean>(false);
+
+	const [showAddTodoFormState, setShowAddTodoForm] = useState<boolean>(false);
+
+	const showTopBar = () => {
+		setShowTopBarState(!showTopBarState);
+	}
+
+	const showAddTodoForm = () => {
+		setShowAddTodoForm(!showAddTodoFormState);
+	}
+
 	return (
-			<>
-			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} />
-			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
-			  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo}/>
-			  <AddTodoModal addNewTodoToArray={addNewTodoToArray} />
-		  </>
-	  );
+		<>
+			<ShowTopBarButton ShowTopBar={showTopBar}/>
+			<br/>
+		  {showTopBarState ? 
+		  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange}/> : null}
+		  <br/>
+		  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
+		  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo}/>
+		  <br/>
+		  <ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm}/> 
+		  {showAddTodoFormState ? 
+		  <AddTodoModal addNewTodoToArray={addNewTodoToArray} SetKeyOfNewTodo={setKeyOfNewTodo} todoKey={todoKey}/> : null}
+	  </>
+	);
 };
 
 

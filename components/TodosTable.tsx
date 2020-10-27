@@ -51,32 +51,60 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 		});
 	}
 
+	let NoResults = 0;
+
 	return (
-					<>
-						<h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
+		<>
+			{// <h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
+			}
+			{
+				TodosArray.length === 0 ? <h4>Add your first Todo below!</h4> : null
+			}
+			{
+				TodosArray
+				.filter(todoBySearchText => {
+					if (todoBySearchText.caption.toLowerCase().includes(SearchText.toLowerCase()) ||
+								 todoBySearchText.description.toLowerCase().includes(SearchText.toLowerCase())) 
 						{
-							TodosArray
-							.filter(todoBySearchText => todoBySearchText.caption.includes(SearchText) ||
-							 todoBySearchText.description.includes(SearchText))
-							.filter(todoByDoneState => {
-								if (SelectByDoneState === 'Done') {
-									return todoByDoneState.isCompleted === true;
-								} else if (SelectByDoneState === 'To Do') {
-									return todoByDoneState.isCompleted === false;
-								} else {
-									return todoByDoneState;
-								}
-							})
-							.map((filteredTodo) => {
-									const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
-									return (
-										<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} 
-										ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo}/>
-									)
-									})
+							return true; 
+						}	else {
+							NoResults++;
+							return false;
 						}
-					</>
-				 );
+					return todoBySearchText.caption.toLowerCase().includes(SearchText.toLowerCase()) ||
+								 todoBySearchText.description.toLowerCase().includes(SearchText.toLowerCase())
+								})
+				.filter(todoByDoneState => {
+					if (SelectByDoneState === 'Done') {
+						if (todoByDoneState.isCompleted === true) {
+							return true;
+						} else {
+							NoResults++;
+							return false;
+						};
+					} else if (SelectByDoneState === 'To Do') {
+						if (todoByDoneState.isCompleted === false) {
+							return true;
+						} else {
+							NoResults++;
+							return false;
+						};
+					} else {
+						return todoByDoneState;
+					}
+				})
+				.map((filteredTodo) => {
+						console.log(`filteredTodo: ${filteredTodo}`);
+						const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
+						return (
+							<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} 
+							ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo}/>
+						)
+						})
+			}
+			{ (NoResults !== 0 && NoResults === TodosArray.length) ? <h3>No Results Found</h3> : null }
+		</>
+	 );
 };
 
 export default TodosTable;

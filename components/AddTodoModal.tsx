@@ -13,16 +13,16 @@ interface ITodoProps {
 
 interface AddTodoModalProps {
 	addNewTodoToArray: (childNewForm: ITodoProps) => void;
+	SetKeyOfNewTodo: () => void;
+	todoKey: Number;
 }
 
-const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToArray}) => {
+const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToArray, SetKeyOfNewTodo, todoKey}) => {
 	
 	const newTitleValue = useRef<HTMLInputElement>(null);
 	const newDescriptionValue = useRef<HTMLTextAreaElement>(null);
 	const newDueDate = useRef<HTMLInputElement>(null);
 	const newIsDone = useRef<HTMLInputElement>(null);
-
-	const [todoKey, setTodoKey] = useState(0)
 
 	return (
 		<form>
@@ -35,7 +35,8 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 			<input name="isDone" type="checkbox" ref={newIsDone}/><label>Completed</label>
 			<br />
 			<button type="button" onClick={()=>{
-				setTodoKey(todoKey + 1)
+				SetKeyOfNewTodo();
+				console.log(`todoKey: ${todoKey}`);
 				let newFormElements: ITodoProps | string;
 				//to avoid 'error: object is possibly null'
 				if ( newTitleValue && newDescriptionValue && newIsDone && newDueDate && newDueDate.current && newTitleValue.current && newDescriptionValue.current && newIsDone.current) {
