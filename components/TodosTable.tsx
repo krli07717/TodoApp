@@ -1,6 +1,14 @@
 import * as React from 'react';
 import Todo from './Todo';
 
+interface IeditedFormElements {
+		index:string;
+    editedCaption: string;
+    editedDescription: string;
+    editedDue: string;
+    editedIsDone: boolean;
+}
+
 interface ITodoProps {
 	key: string;
 	index: string;
@@ -18,9 +26,10 @@ interface TodosTableProps {
 	TodosArray: ITodoProps[];
 	ToggleIsComplete: (index: ITodoProps["index"]) => void;
 	DeleteTodo: (index: ITodoProps["index"]) => void;
+	EditTodoArray: (editedFormElements:IeditedFormElements) => void;
 }
 
-const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, ToggleIsComplete, DeleteTodo}) => {
+const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, ToggleIsComplete, DeleteTodo, EditTodoArray}) => {
 	
 	if (SelectSortMethodState === 'Date Added') {
 		TodosArray.sort((a, b) => parseInt(a.index) - parseInt(b.index));
@@ -96,9 +105,12 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 				.map((filteredTodo) => {
 						console.log(`filteredTodo: ${filteredTodo}`);
 						const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
+						let pastDue = false;
+						const today = new Date();
+						if (due !== "" && today.getTime() > new Date(new Date(due).setDate(new Date(due).getDate()+1)).getTime())  {pastDue = true;} //if (today > due.tomorrow)
 						return (
 							<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} 
-							ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo}/>
+							ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo} pastDue={pastDue} EditTodoArray={EditTodoArray}/>
 						)
 						})
 			}

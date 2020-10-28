@@ -9,6 +9,14 @@ import AddTodoModal from '../components/AddTodoModal';
 type DoneState = 'All Tasks' | 'Done' | 'To Do';
 type SortMethodState = 'Date Added' | 'Caption' | 'Due'; 
 
+interface IeditedFormElements {
+		index:string;
+    editedCaption: string;
+    editedDescription: string;
+    editedDue: string;
+    editedIsDone: boolean;
+}
+
 interface ITodoProps {
 	key: string;
 	index: string;
@@ -112,6 +120,26 @@ const App = () => {
 		setShowAddTodoForm(!showAddTodoFormState);
 	}
 
+	const editTodoArray = (editedFormElements:IeditedFormElements) => {
+		console.log('success!');
+		console.log(editedFormElements);
+		const {index, editedCaption, editedDescription, editedDue, editedIsDone} = editedFormElements;
+		const newTodosArray = [...todosArray];
+		for (const todo of newTodosArray) { 
+			if (todo.index === index) {
+				todo.caption = editedCaption;
+				todo.description = editedDescription;
+				todo.due = editedDue;
+				todo.isCompleted = editedIsDone;
+			}
+		}
+		console.log('newTodosArray after reassignment')
+		console.log(newTodosArray)
+		setTodosArray(newTodosArray);
+		console.log('todosArray after reassignment')
+		console.log(todosArray)
+	}
+
 	return (
 		<>
 			<ShowTopBarButton ShowTopBar={showTopBar}/>
@@ -120,7 +148,7 @@ const App = () => {
 		  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange}/> : null}
 		  <br/>
 		  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
-		  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo}/>
+		  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo} EditTodoArray={editTodoArray}/>
 		  <br/>
 		  <ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm}/> 
 		  {showAddTodoFormState ? 
