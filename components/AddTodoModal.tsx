@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {useRef, useState} from 'react';
+import {useRef, useState, useContext} from 'react';
+import {languages, LanguageContext} from './languages';
 
 interface ITodoProps {
 	key: string;
@@ -24,16 +25,17 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 	const newDescriptionValue = useRef<HTMLTextAreaElement>(null);
 	const newDueDate = useRef<HTMLInputElement>(null);
 	const newIsDone = useRef<HTMLInputElement>(null);
+	const language = useContext(LanguageContext);
 
 	return (
 		<form>
-			<input placeholder='Todo title' type='text' ref={newTitleValue}/>
+			<input placeholder={language.ToDoTitle} type='text' ref={newTitleValue}/>
 			<br />
-			<textarea placeholder='Description..' ref={newDescriptionValue} />
+			<textarea placeholder={language.Description} ref={newDescriptionValue} />
 			<br />
-			<label>Due Date:</label><input placeholder='Choose due' type='date' ref={newDueDate}/>
+			<label>{language.Due}</label><input placeholder='Choose due' type='date' ref={newDueDate}/>
 			<br />
-			<input name="isDone" type="checkbox" ref={newIsDone}/><label>Completed</label>
+			<input name="isDone" type="checkbox" ref={newIsDone}/><label>{language.Completed}</label>
 			<br />
 			<button type="button" onClick={()=>{
 				SetKeyOfNewTodo();
@@ -62,10 +64,10 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({addNewTodoToA
 					newIsDone.current.checked = false;
 				}
 			}
-			}>Add Todo</button>
+			}>V</button>
 			<button type='button' onClick={()=>{
 				ShowAddTodoForm();
-			}}>Cancel</button>
+			}}>X</button>
 		</form>
 		);
 };

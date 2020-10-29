@@ -6,14 +6,18 @@ interface TopBarProps {
 	SelectByDone: (event: React.ChangeEvent<HTMLSelectElement>)=> void;
 	SelectSortMethod: (event: React.ChangeEvent<HTMLSelectElement>)=> void;
 	onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	ShowTopBarState: boolean;
+	ChangeLanguage: () => void;
+	TWLanguage: boolean;
 }
 
-const TopBar: React.FunctionComponent<TopBarProps> = ({SelectByDone,SelectSortMethod,onSearchChange}) => {
+const TopBar: React.FunctionComponent<TopBarProps> = ({SelectByDone,SelectSortMethod,onSearchChange,ShowTopBarState,ChangeLanguage,TWLanguage}) => {
 	return (
-		<>
+		<div style={{visibility: ShowTopBarState ? 'hidden' : 'visible'}}>
 			<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
 			<SearchBar onSearchChange={onSearchChange} />
-		</>
+			<button type="button" onClick={()=>ChangeLanguage()}>{TWLanguage ? "En" : "繁"}</button>
+		</div>
 	);
 };
 

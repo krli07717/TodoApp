@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Todo from './Todo';
+import {useContext} from 'react';
+import {languages, LanguageContext} from './languages';
 
 interface IeditedFormElements {
 		index:string;
@@ -31,6 +33,8 @@ interface TodosTableProps {
 
 const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, ToggleIsComplete, DeleteTodo, EditTodoArray}) => {
 	
+	const language = useContext(LanguageContext);
+
 	if (SelectSortMethodState === 'Date Added') {
 		TodosArray.sort((a, b) => parseInt(a.index) - parseInt(b.index));
 	} else if (SelectSortMethodState === 'Due') {
@@ -67,7 +71,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 			{// <h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
 			}
 			{
-				TodosArray.length === 0 ? <h4>Add your first Todo below!</h4> : null
+				TodosArray.length === 0 ? <h4>{language.AddYourFirstTodo}</h4> : null
 			}
 			{
 				TodosArray
@@ -114,7 +118,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 						)
 						})
 			}
-			{ (NoResults !== 0 && NoResults === TodosArray.length) ? <h3>No Results Found</h3> : null }
+			{ (NoResults !== 0 && NoResults === TodosArray.length) ? <h3>{language.NoResultsFound}</h3> : null }
 		</>
 	 );
 };

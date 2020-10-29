@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useContext} from 'react';
+import {languages, LanguageContext} from './languages';
 
 interface SortProps {
 	SelectByDone: (event: React.ChangeEvent<HTMLSelectElement>)=> void;
@@ -6,18 +8,19 @@ interface SortProps {
 }
 
 const Sort: React.FunctionComponent<SortProps> = ({SelectByDone, SelectSortMethod}) => {
+	const language = useContext(LanguageContext);
 	return (
 		<>
-		<label >Sort by:</label>
+			<label >{language.sortBy}</label>
 			<select	onChange={SelectByDone}>
-		    <option value="All Tasks">All Tasks</option>
-		    <option value="Done">Done</option>
-		    <option value="To Do">To Do</option>
+		    <option value="All Tasks">{language.sortAllTask}</option>
+		    <option value="Done">{language.Done}</option>
+		    <option value="To Do">{language.ToDo}</option>
 	    </select>
 	    <select	onChange={SelectSortMethod}>
-		    <option value="Date Added">Date Added</option>
-		    <option value="Due">Due</option>
-		    <option value="Caption">Caption</option>
+		    <option value="Date Added">{language.AddedDate}</option>
+		    <option value="Due">{language.Due}</option>
+		    <option value="Caption">{language.Caption}</option>
 	    </select>
 		</>
 		);

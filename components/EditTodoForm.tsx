@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {useRef, useState} from 'react';
+import {useRef, useState, useContext} from 'react';
+import {languages, LanguageContext} from './languages';
 
 interface IeditedFormElements {
 		index:string;
@@ -27,16 +28,17 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({key, index, c
 	const editDescriptionValue = useRef<HTMLTextAreaElement>(null);
 	const editDueDate = useRef<HTMLInputElement>(null);
 	const editIsDone = useRef<HTMLInputElement>(null);
+	const language = useContext(LanguageContext);
 
 	return (
 		<form>
-			<input contentEditable="true" placeholder='Todo title' type='text' ref={editTitleValue} defaultValue={caption}/>
+			<input contentEditable="true" placeholder={language.ToDoTitle} type='text' ref={editTitleValue} defaultValue={caption}/>
 			<br />
-			<textarea contentEditable="true" placeholder='Description..' ref={editDescriptionValue} defaultValue={description}/>
+			<textarea contentEditable="true" placeholder={language.Description} ref={editDescriptionValue} defaultValue={description}/>
 			<br />
-			<label>Due Date:</label><input contentEditable="true" placeholder='Choose due' type='date' ref={editDueDate} defaultValue={due}/>
+			<label>{language.Due}</label><input contentEditable="true" placeholder='Choose due' type='date' ref={editDueDate} defaultValue={due}/>
 			<br />
-			<input contentEditable="true" name="isDone" type="checkbox" ref={editIsDone} defaultChecked={isCompleted}/><label>Completed</label>
+			<input contentEditable="true" name="isDone" type="checkbox" ref={editIsDone} defaultChecked={isCompleted}/><label>{language.Completed}</label>
 			<br />
 			<button type="button" onClick={()=>{
 				if ( editTitleValue && editDescriptionValue && editIsDone && editDueDate && editDueDate.current && editTitleValue.current && editDescriptionValue.current && editIsDone.current) {
@@ -50,10 +52,10 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({key, index, c
 					EditTodoArray(editedFormElements);
 					SetEditMode(false);
 				}
-			}}>Save</button>
+			}}>V</button>
 			<button type='button' onClick={()=>{
 				SetEditMode(false);
-			}}>Cancel</button>
+			}}>X</button>
 		</form>
 		);
 };

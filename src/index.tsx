@@ -5,6 +5,7 @@ import ShowAddTodoFormButton from '../components/ShowAddTodoFormButton';
 import TopBar from '../components/TopBar';
 import TodosTable from '../components/TodosTable';
 import AddTodoModal from '../components/AddTodoModal';
+import {languages, LanguageContext} from '../components/languages';
 
 type DoneState = 'All Tasks' | 'Done' | 'To Do';
 type SortMethodState = 'Date Added' | 'Caption' | 'Due'; 
@@ -27,7 +28,8 @@ interface ITodoProps {
 	isCompleted: boolean;
 }
 
-const App = () => {	
+
+const App = () => {
 
 	const [doneState, setDoneState] = useState<DoneState>('All Tasks')
 
@@ -140,19 +142,27 @@ const App = () => {
 		console.log(todosArray)
 	}
 
+	const [TWLanguage, setTWLanguage] = useState<boolean>(true);
+
+	const changeLanguage = () => {
+		setTWLanguage(!TWLanguage);
+	}
+
 	return (
 		<>
-			<ShowTopBarButton ShowTopBar={showTopBar}/>
-			<br/>
-		  {showTopBarState ? 
-		  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange}/> : null}
-		  <br/>
-		  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
-		  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo} EditTodoArray={editTodoArray}/>
-		  <br/>
-		  <ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm}/> 
-		  {showAddTodoFormState ? 
-		  <AddTodoModal addNewTodoToArray={addNewTodoToArray} SetKeyOfNewTodo={setKeyOfNewTodo} todoKey={todoKey} ShowAddTodoForm={showAddTodoForm}/> : null}
+			<LanguageContext.Provider value={TWLanguage ? languages.tw : languages.en}>
+				<ShowTopBarButton ShowTopBar={showTopBar}/>
+				<br/>
+			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} ShowTopBarState={showTopBarState}
+			  				ChangeLanguage={changeLanguage} TWLanguage={TWLanguage}/>
+			  <br/>
+			  <TodosTable SelectByDoneState={doneState} SelectSortMethodState={sortMethodState} SearchText={searchText} 
+			  						TodosArray={todosArray} ToggleIsComplete={toggleIsComplete} DeleteTodo={deleteTodo} EditTodoArray={editTodoArray}/>
+			  <br/>
+			  <ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm}/> 
+			  {showAddTodoFormState ? 
+			  <AddTodoModal addNewTodoToArray={addNewTodoToArray} SetKeyOfNewTodo={setKeyOfNewTodo} todoKey={todoKey} ShowAddTodoForm={showAddTodoForm}/> : null}
+		  </LanguageContext.Provider>
 	  </>
 	);
 };
