@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Todo from './Todo';
-import {useContext} from 'react';
-import {languages, LanguageContext} from './languages';
+import * as React from "react";
+import Todo from "./Todo";
+import { useContext } from "react";
+import { languages, LanguageContext } from "./languages";
 
 interface IeditedFormElements {
-		index:string;
-    editedCaption: string;
-    editedDescription: string;
-    editedDue: string;
-    editedIsDone: boolean;
+	index: string;
+	editedCaption: string;
+	editedDescription: string;
+	editedDue: string;
+	editedIsDone: boolean;
 }
 
 interface ITodoProps {
@@ -28,16 +28,23 @@ interface TodosTableProps {
 	TodosArray: ITodoProps[];
 	ToggleIsComplete: (index: ITodoProps["index"]) => void;
 	DeleteTodo: (index: ITodoProps["index"]) => void;
-	EditTodoArray: (editedFormElements:IeditedFormElements) => void;
+	EditTodoArray: (editedFormElements: IeditedFormElements) => void;
 }
 
-const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState, SelectSortMethodState, SearchText, TodosArray, ToggleIsComplete, DeleteTodo, EditTodoArray}) => {
-	
+const TodosTable: React.FunctionComponent<TodosTableProps> = ({
+	SelectByDoneState,
+	SelectSortMethodState,
+	SearchText,
+	TodosArray,
+	ToggleIsComplete,
+	DeleteTodo,
+	EditTodoArray,
+}) => {
 	const language = useContext(LanguageContext);
 
-	if (SelectSortMethodState === 'Date Added') {
+	if (SelectSortMethodState === "Date Added") {
 		TodosArray.sort((a, b) => parseInt(a.index) - parseInt(b.index));
-	} else if (SelectSortMethodState === 'Due') {
+	} else if (SelectSortMethodState === "Due") {
 		// sort all the NaNs to the last
 		TodosArray.sort((a, b) => {
 			let dateNumberA = new Date(a.due).getTime();
@@ -50,7 +57,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 				return dateNumberA - dateNumberB;
 			}
 		}); // this method of sorting dates may not be the best practice according to stackoverflow
-	} else if (SelectSortMethodState === 'Caption') {
+	} else if (SelectSortMethodState === "Caption") {
 		TodosArray.sort((a, b) => {
 			let captionA = a.caption.toLowerCase();
 			let captionB = b.caption.toLowerCase();
@@ -68,59 +75,95 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({SelectByDoneState
 
 	return (
 		<>
-			{// <h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
-			}
 			{
-				TodosArray.length === 0 ? <h4>{language.AddYourFirstTodo}</h4> : null
+				// <h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
 			}
-			{
-				TodosArray
-				.filter(todoBySearchText => {
-					if (todoBySearchText.caption.toLowerCase().includes(SearchText.toLowerCase()) ||
-								 todoBySearchText.description.toLowerCase().includes(SearchText.toLowerCase())) 
-						{
-							return true; 
-						}	else {
-							NoResults++;
-							return false;
-						}
-					return todoBySearchText.caption.toLowerCase().includes(SearchText.toLowerCase()) ||
-								 todoBySearchText.description.toLowerCase().includes(SearchText.toLowerCase())
-								})
-				.filter(todoByDoneState => {
-					if (SelectByDoneState === 'Done') {
+			{TodosArray.length === 0 ? <h4>{language.AddYourFirstTodo}</h4> : null}
+			{TodosArray.filter((todoBySearchText) => {
+				if (
+					todoBySearchText.caption
+						.toLowerCase()
+						.includes(SearchText.toLowerCase()) ||
+					todoBySearchText.description
+						.toLowerCase()
+						.includes(SearchText.toLowerCase())
+				) {
+					return true;
+				} else {
+					NoResults++;
+					return false;
+				}
+				return (
+					todoBySearchText.caption
+						.toLowerCase()
+						.includes(SearchText.toLowerCase()) ||
+					todoBySearchText.description
+						.toLowerCase()
+						.includes(SearchText.toLowerCase())
+				);
+			})
+				.filter((todoByDoneState) => {
+					if (SelectByDoneState === "Done") {
 						if (todoByDoneState.isCompleted === true) {
 							return true;
 						} else {
 							NoResults++;
 							return false;
-						};
-					} else if (SelectByDoneState === 'To Do') {
+						}
+					} else if (SelectByDoneState === "To Do") {
 						if (todoByDoneState.isCompleted === false) {
 							return true;
 						} else {
 							NoResults++;
 							return false;
-						};
+						}
 					} else {
 						return todoByDoneState;
 					}
 				})
 				.map((filteredTodo) => {
-						console.log(`filteredTodo: ${filteredTodo}`);
-						const {key, index, caption, description, addedDate, due, isCompleted} = filteredTodo;
-						let pastDue = false;
-						const today = new Date();
-						if (due !== "" && today.getTime() > new Date(new Date(due).setDate(new Date(due).getDate()+1)).getTime())  {pastDue = true;} //if (today > due.tomorrow)
-						return (
-							<Todo key={key} index={index} caption={caption} description={description} addedDate={addedDate} due={due} isCompleted={isCompleted} 
-							ToggleIsComplete={ToggleIsComplete} DeleteTodo={DeleteTodo} pastDue={pastDue} EditTodoArray={EditTodoArray}/>
-						)
-						})
-			}
-			{ (NoResults !== 0 && NoResults === TodosArray.length) ? <h3>{language.NoResultsFound}</h3> : null }
+					console.log(`filteredTodo: ${filteredTodo}`);
+					const {
+						key,
+						index,
+						caption,
+						description,
+						addedDate,
+						due,
+						isCompleted,
+					} = filteredTodo;
+					let pastDue = false;
+					const today = new Date();
+					if (
+						due !== "" &&
+						today.getTime() >
+							new Date(
+								new Date(due).setDate(new Date(due).getDate() + 1)
+							).getTime()
+					) {
+						pastDue = true;
+					} //if (today > due.tomorrow)
+					return (
+						<Todo
+							key={key}
+							index={index}
+							caption={caption}
+							description={description}
+							addedDate={addedDate}
+							due={due}
+							isCompleted={isCompleted}
+							ToggleIsComplete={ToggleIsComplete}
+							DeleteTodo={DeleteTodo}
+							pastDue={pastDue}
+							EditTodoArray={EditTodoArray}
+						/>
+					);
+				})}
+			{NoResults !== 0 && NoResults === TodosArray.length ? (
+				<h3>{language.NoResultsFound}</h3>
+			) : null}
 		</>
-	 );
+	);
 };
 
 export default TodosTable;

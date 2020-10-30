@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 const languages = {
 	en: {
@@ -30,9 +30,9 @@ const languages = {
 		ToDoTitle: "標題",
 		Description: "內容",
 		Completed: "已完成",
-	}
-}
+	},
+};
 
 const LanguageContext = React.createContext(languages.en);
 
-export {languages, LanguageContext};
+export { languages, LanguageContext };
