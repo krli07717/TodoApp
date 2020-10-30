@@ -49,28 +49,19 @@ const App = () => {
 		setSearchText(event.currentTarget.value);
 	}
 
-	const [todosArray, setTodosArray] = useState<ITodoProps[]>([
-			// {
-			// 	caption: 'Buy milk',
-			// 	description: 'Want to buy milk',
-			// 	//addedDate: new Date,
-			// 	//due: 'select Date'
-			// 	isCompleted: false,
-			// },
-			// {
-			// 	caption: 'Do yoga',
-			// 	description: 'Exercise is important :D',
-			// 	//addedDate: new Date,
-			// 	//due: 'select Date'
-			// 	isCompleted: true,
-			// },
-		])
+	const TODOS = localStorage.getItem('TODOS');
 
+	const [todosArray, setTodosArray] = useState<ITodoProps[]>(TODOS ? JSON.parse(TODOS) : []); 
 
-	const [todoKey, setTodoKey] = useState(0)
+	// const [todosArray, setTodosArray] = useState<ITodoProps[]>([])
+
+	const TODOKEY = localStorage.getItem('TODOKEY');
+
+	const [todoKey, setTodoKey] = useState(TODOKEY ? JSON.parse(TODOKEY)+1 : 0)
 
 	const setKeyOfNewTodo = () => {
 			setTodoKey(todoKey + 1);
+			localStorage.setItem('TODOKEY', JSON.stringify(todoKey))
 	}
 
 	const addNewTodoToArray = (childNewForm: ITodoProps) => {
@@ -89,6 +80,7 @@ const App = () => {
 		console.log('todosArray - reset array');
 		console.log(todosArray);
 		setShowAddTodoForm(!showAddTodoFormState);
+		localStorage.setItem('TODOS', JSON.stringify((newTodosArray)));
 	}
 
 	const toggleIsComplete = (index: ITodoProps["index"]) => {
@@ -97,6 +89,7 @@ const App = () => {
 		const newTodosArray = [...todosArray];
 		for (const todo of newTodosArray) {if (todo.index === index) {todo.isCompleted = !todo.isCompleted}}  //Async is screwed up
 		setTodosArray(newTodosArray);
+		localStorage.setItem('TODOS', JSON.stringify((newTodosArray)));
 	}
 
 	const deleteTodo = (index: ITodoProps["index"]) => {
@@ -108,6 +101,7 @@ const App = () => {
 		console.log(`todosArray after deleting, newTodosArray`);
 		console.log(todosArray);
 		console.log(newTodosArray);
+		localStorage.setItem('TODOS', JSON.stringify((newTodosArray)));
 	}
 
 	const [showTopBarState, setShowTopBarState] = useState<boolean>(false);
@@ -140,17 +134,21 @@ const App = () => {
 		setTodosArray(newTodosArray);
 		console.log('todosArray after reassignment')
 		console.log(todosArray)
+		localStorage.setItem('TODOS', JSON.stringify((newTodosArray)));
 	}
 
 	const [TWLanguage, setTWLanguage] = useState<boolean>(true);
 
 	const changeLanguage = () => {
 		setTWLanguage(!TWLanguage);
+		localStorage.setItem('TWLanguage', JSON.stringify((!TWLanguage)));
 	}
+
+	const languagePreference = localStorage.getItem('TWLanguage');
 
 	return (
 		<>
-			<LanguageContext.Provider value={TWLanguage ? languages.tw : languages.en}>
+			<LanguageContext.Provider value={(languagePreference ? JSON.parse(languagePreference) : TWLanguage) ? languages.tw : languages.en}>
 				<ShowTopBarButton ShowTopBar={showTopBar}/>
 				<br/>
 			  <TopBar SelectByDone={selectByDone} SelectSortMethod={selectSortMethod} onSearchChange={onSearchChange} ShowTopBarState={showTopBarState}

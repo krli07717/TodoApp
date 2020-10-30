@@ -13,10 +13,12 @@ interface TopBarProps {
 
 const TopBar: React.FunctionComponent<TopBarProps> = ({SelectByDone,SelectSortMethod,onSearchChange,ShowTopBarState,ChangeLanguage,TWLanguage}) => {
 	return (
-		<div style={{visibility: ShowTopBarState ? 'hidden' : 'visible'}}>
+		<div style={{visibility: ShowTopBarState ? 'visible' : 'hidden'}}>
 			<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
 			<SearchBar onSearchChange={onSearchChange} />
 			<button type="button" onClick={()=>ChangeLanguage()}>{TWLanguage ? "En" : "繁"}</button>
+			<button type="button">🌙</button>
+			<button onClick={()=>window.open("https://github.com/krli07717/TodoApp", "_blank")}>{"</>"}</button>
 		</div>
 	);
 };
