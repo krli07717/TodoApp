@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import { useContext } from "react";
-import { languages, LanguageContext } from "./languages";
+import { LanguageContext } from "./languages";
 
 interface SearchBarProp {
 	onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useRef, useState, useContext } from "react";
-import { languages, LanguageContext } from "./languages";
+import React from "react";
+import { useRef, useContext } from "react";
+import { LanguageContext } from "./languages";
 
 interface IeditedFormElements {
 	index: string;
@@ -11,11 +11,9 @@ interface IeditedFormElements {
 }
 
 interface EditTodoFormProps {
-	key: string;
 	index: string;
 	caption: string;
 	description: string;
-	addedDate: string;
 	due: string;
 	isCompleted: boolean;
 	SetEditMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,11 +21,9 @@ interface EditTodoFormProps {
 }
 
 const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({
-	key,
 	index,
 	caption,
 	description,
-	addedDate,
 	due,
 	isCompleted,
 	SetEditMode,

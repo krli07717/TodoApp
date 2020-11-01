@@ -1,6 +1,5 @@
-import * as React from "react";
+import React from "react";
 import { useState } from "react";
-import * as ReactDOM from "react-dom";
 import ShowTopBarButton from "../components/ShowTopBarButton";
 import ShowAddTodoFormButton from "../components/ShowAddTodoFormButton";
 import TopBar from "../components/TopBar";
@@ -29,7 +28,7 @@ interface ITodoProps {
 	isCompleted: boolean;
 }
 
-const App = () => {
+const App: React.FunctionComponent = () => {
 	const [doneState, setDoneState] = useState<DoneState>("All Tasks");
 
 	const [sortMethodState, setSortMethodState] = useState<SortMethodState>(

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useRef, useState, useContext } from "react";
-import { languages, LanguageContext } from "./languages";
+import React from "react";
+import { useRef, useContext } from "react";
+import { LanguageContext } from "./languages";
 
 interface ITodoProps {
 	key: string;
@@ -15,7 +15,7 @@ interface ITodoProps {
 interface AddTodoModalProps {
 	addNewTodoToArray: (childNewForm: ITodoProps) => void;
 	SetKeyOfNewTodo: () => void;
-	todoKey: Number;
+	todoKey: number;
 	ShowAddTodoForm: () => void;
 }
 

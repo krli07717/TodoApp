@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import { useContext } from "react";
-import { languages, LanguageContext } from "./languages";
+import { LanguageContext } from "./languages";
 
 interface SortProps {
 	SelectByDone: (event: React.ChangeEvent<HTMLSelectElement>) => void;

@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { useState, useContext } from "react";
 import EditTodoForm from "./EditTodoForm";
-import { languages, LanguageContext } from "./languages";
+import { LanguageContext } from "./languages";
 
 interface IeditedFormElements {
 	index: string;
@@ -93,7 +93,6 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 					index={index}
 					caption={caption}
 					description={description}
-					addedDate={addedDate}
 					due={due}
 					isCompleted={isCompleted}
 					SetEditMode={setEditMode}

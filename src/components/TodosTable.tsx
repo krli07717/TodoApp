@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import Todo from "./Todo";
 import { useContext } from "react";
-import { languages, LanguageContext } from "./languages";
+import { LanguageContext } from "./languages";
 
 interface IeditedFormElements {
 	index: string;
@@ -47,8 +47,8 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 	} else if (SelectSortMethodState === "Due") {
 		// sort all the NaNs to the last
 		TodosArray.sort((a, b) => {
-			let dateNumberA = new Date(a.due).getTime();
-			let dateNumberB = new Date(b.due).getTime();
+			const dateNumberA = new Date(a.due).getTime();
+			const dateNumberB = new Date(b.due).getTime();
 			if (isNaN(dateNumberB) || (isNaN(dateNumberA) && isNaN(dateNumberB))) {
 				return -1;
 			} else if (isNaN(dateNumberA)) {
@@ -59,8 +59,8 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 		}); // this method of sorting dates may not be the best practice according to stackoverflow
 	} else if (SelectSortMethodState === "Caption") {
 		TodosArray.sort((a, b) => {
-			let captionA = a.caption.toLowerCase();
-			let captionB = b.caption.toLowerCase();
+			const captionA = a.caption.toLowerCase();
+			const captionB = b.caption.toLowerCase();
 			if (captionA < captionB) {
 				return -1;
 			}
