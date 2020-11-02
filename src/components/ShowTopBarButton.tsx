@@ -8,7 +8,7 @@ const ShowTopBarButton: React.FunctionComponent<ShowTopBarButtonProps> = ({
 	ShowTopBar,
 }) => {
 	return (
-		<button type="button" onClick={() => ShowTopBar()}>
+		<button type="button" role="ShowTopBarButton" onClick={() => ShowTopBar()}>
 			...
 		</button>
 	);

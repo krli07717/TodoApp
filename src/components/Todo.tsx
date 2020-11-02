@@ -48,6 +48,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 		<>
 			<button
 				type="button"
+				role="expandTodo"
 				onClick={() => {
 					setExpand(!expand);
 				}}

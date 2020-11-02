@@ -78,7 +78,11 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 			{
 				// <h1>Sort by {SelectByDoneState} and {SelectSortMethodState}</h1>
 			}
-			{TodosArray.length === 0 ? <h4>{language.AddYourFirstTodo}</h4> : null}
+			{TodosArray.length === 0 ? (
+				<div>
+					<h4>{language.AddYourFirstTodo}</h4>
+				</div>
+			) : null}
 			{TodosArray.filter((todoBySearchText) => {
 				if (
 					todoBySearchText.caption

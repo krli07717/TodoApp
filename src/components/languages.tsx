@@ -25,7 +25,7 @@ const languages = {
 		Due: "到期日",
 		Caption: "標題",
 		SearchHere: "搜尋..",
-		AddYourFirstTodo: "點擊下方開始建立代辦事項",
+		AddYourFirstTodo: "沒有任何代辦事項",
 		NoResultsFound: "沒有搜尋結果",
 		ToDoTitle: "標題",
 		Description: "內容",

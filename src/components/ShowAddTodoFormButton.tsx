@@ -8,7 +8,11 @@ const ShowAddTodoFormButton: React.FunctionComponent<ShowAddTodoFormButtonProps>
 	ShowAddTodoForm,
 }) => {
 	return (
-		<button type="button" onClick={() => ShowAddTodoForm()}>
+		<button
+			type="button"
+			role="ShowAddTodoFormButton"
+			onClick={() => ShowAddTodoForm()}
+		>
 			+
 		</button>
 	);

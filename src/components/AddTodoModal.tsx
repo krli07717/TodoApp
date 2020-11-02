@@ -33,18 +33,28 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({
 
 	return (
 		<form>
-			<input placeholder={language.ToDoTitle} type="text" ref={newTitleValue} />
+			<input
+				role="newTodoTitleInput"
+				placeholder={language.ToDoTitle}
+				type="text"
+				ref={newTitleValue}
+			/>
 			<br />
-			<textarea placeholder={language.Description} ref={newDescriptionValue} />
+			<textarea
+				role="newTodoDescriptionInput"
+				placeholder={language.Description}
+				ref={newDescriptionValue}
+			/>
 			<br />
 			<label>{language.Due}</label>
-			<input placeholder="Choose due" type="date" ref={newDueDate} />
+			<input role="ChooseDue" type="date" ref={newDueDate} />
 			<br />
-			<input name="isDone" type="checkbox" ref={newIsDone} />
+			<input role="isDone" type="checkbox" ref={newIsDone} />
 			<label>{language.Completed}</label>
 			<br />
 			<button
 				type="button"
+				role="addTodo"
 				onClick={() => {
 					SetKeyOfNewTodo();
 					console.log(`todoKey: ${todoKey}`);
