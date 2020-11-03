@@ -39,7 +39,6 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({
 		<form>
 			<input
 				contentEditable="true"
-				role="editTodoTitle"
 				placeholder={language.ToDoTitle}
 				type="text"
 				ref={editTitleValue}
@@ -73,7 +72,6 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({
 			<br />
 			<button
 				type="button"
-				role="saveEdit"
 				onClick={() => {
 					if (
 						editTitleValue &&

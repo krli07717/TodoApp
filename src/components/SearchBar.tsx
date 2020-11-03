@@ -14,7 +14,6 @@ const SearchBar: React.FunctionComponent<SearchBarProp> = ({
 		<>
 			<input
 				type="Search"
-				role="SearchTodo"
 				placeholder={language.SearchHere}
 				onChange={onSearchChange}
 			/>

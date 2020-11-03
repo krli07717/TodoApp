@@ -81,14 +81,10 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 			<button type="button" onClick={() => ToggleIsComplete(index)}>
 				V
 			</button>
-			<button
-				type="button"
-				role="EditTodoForm"
-				onClick={() => setEditMode(!editMode)}
-			>
+			<button type="button" onClick={() => setEditMode(!editMode)}>
 				Pen
 			</button>
-			<button type="button" role="DeleteTodo" onClick={() => DeleteTodo(index)}>
+			<button type="button" onClick={() => DeleteTodo(index)}>
 				X
 			</button>
 			<br />

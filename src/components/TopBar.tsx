@@ -23,11 +23,7 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 		<div style={{ visibility: ShowTopBarState ? "visible" : "hidden" }}>
 			<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
 			<SearchBar onSearchChange={onSearchChange} />
-			<button
-				type="button"
-				role="ChangeLanguage"
-				onClick={() => ChangeLanguage()}
-			>
+			<button type="button" onClick={() => ChangeLanguage()}>
 				{TWLanguage ? "En" : "繁"}
 			</button>
 			<button type="button">🌙</button>
