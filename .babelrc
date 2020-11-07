@@ -5,12 +5,15 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
+    ["@dr.pogodin/react-css-modules", {
+      "webpackHotModuleReloading": true
+    }],
     [
       "@babel/plugin-transform-runtime",
       {
         "regenerator": true
       }
-    ]
+    ],
   ]
 }
 

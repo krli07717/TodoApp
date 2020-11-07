@@ -6,6 +6,7 @@ import TopBar from "../components/TopBar";
 import TodosTable from "../components/TodosTable";
 import AddTodoModal from "../components/AddTodoModal";
 import { languages, LanguageContext } from "../components/languages";
+import "./App.css";
 
 type DoneState = "All Tasks" | "Done" | "To Do";
 type SortMethodState = "Date Added" | "Caption" | "Due";
@@ -184,6 +185,11 @@ const App: React.FunctionComponent = () => {
 					TWLanguage={TWLanguage}
 				/>
 				<br />
+				{console.log(`styles["background"]:`)}
+				{console.log("background")}
+				<h3 styleName="background" className="background">
+					CSS Here
+				</h3>
 				<TodosTable
 					SelectByDoneState={doneState}
 					SelectSortMethodState={sortMethodState}
