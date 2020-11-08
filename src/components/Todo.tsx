@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import EditTodoForm from "./EditTodoForm";
 import { LanguageContext } from "./languages";
+import "./Todo.css";
 
 interface IeditedFormElements {
 	index: string;
@@ -55,7 +56,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 			>
 				...
 			</button>
-			<h3>{caption}</h3>
+			<h3 styleName="background">{caption}</h3>
 			{pastDue ? <h5>DueImage!</h5> : null}
 			{expand ? (
 				<>

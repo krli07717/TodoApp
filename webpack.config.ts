@@ -33,21 +33,6 @@ const config: webpack.Configuration = {
               },
             },
           },
-          // {
-          //   loader: "postcss-loader",
-          //   options: {
-          //     postcssOptions: {
-          //       plugins: [
-          //         [
-          //           "postcss-preset-env",
-          //           {
-          //             // Options
-          //           },
-          //         ],
-          //       ],
-          //     },
-          //   },
-          // },
         ],
       },
     ],

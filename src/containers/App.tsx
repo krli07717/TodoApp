@@ -165,6 +165,22 @@ const App: React.FunctionComponent = () => {
 		localStorage.setItem("TWLanguage", JSON.stringify(!TWLanguage));
 	};
 
+	const DARK = localStorage.getItem("DARK");
+
+	const [darkTheme, setDarkTheme] = useState<boolean>(
+		DARK ? JSON.parse(DARK) : false
+	);
+
+	const htmlTag = document.getElementsByTagName("HTML")[0];
+
+	htmlTag.setAttribute("dark-theme", JSON.stringify(darkTheme));
+
+	const changeTheme = () => {
+		setDarkTheme(!darkTheme);
+		localStorage.setItem("DARK", JSON.stringify(!darkTheme));
+		htmlTag.setAttribute("dark-theme", JSON.stringify(!darkTheme));
+	};
+
 	return (
 		<>
 			<LanguageContext.Provider
@@ -183,13 +199,10 @@ const App: React.FunctionComponent = () => {
 					ShowTopBarState={showTopBarState}
 					ChangeLanguage={changeLanguage}
 					TWLanguage={TWLanguage}
+					ChangeTheme={changeTheme}
 				/>
 				<br />
-				{console.log(`styles["background"]:`)}
-				{console.log("background")}
-				<h3 styleName="background" className="background">
-					CSS Here
-				</h3>
+				<h3 styleName="background">CSS Here</h3>
 				<TodosTable
 					SelectByDoneState={doneState}
 					SelectSortMethodState={sortMethodState}
