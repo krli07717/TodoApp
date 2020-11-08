@@ -200,6 +200,7 @@ const App: React.FunctionComponent = () => {
 					ChangeLanguage={changeLanguage}
 					TWLanguage={TWLanguage}
 					ChangeTheme={changeTheme}
+					darkTheme={darkTheme}
 				/>
 				<br />
 				<h3 styleName="background">CSS Here</h3>

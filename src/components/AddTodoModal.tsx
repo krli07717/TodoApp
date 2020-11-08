@@ -108,7 +108,7 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({
 					}
 				}}
 			>
-				V
+				<i className="fas fa-check"></i>
 			</button>
 			<button
 				type="button"
@@ -116,7 +116,7 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({
 					ShowAddTodoForm();
 				}}
 			>
-				X
+				<i className="fas fa-times"></i>
 			</button>
 		</form>
 	);

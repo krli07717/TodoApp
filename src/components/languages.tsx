@@ -22,7 +22,7 @@ const languages = {
 		Done: "已完成",
 		ToDo: "未完成",
 		AddedDate: "新增日期",
-		Due: "到期日",
+		Due: "期限",
 		Caption: "標題",
 		SearchHere: "搜尋..",
 		AddYourFirstTodo: "沒有任何代辦事項",

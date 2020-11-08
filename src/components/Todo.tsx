@@ -54,10 +54,12 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 					setExpand(!expand);
 				}}
 			>
-				...
+				<i className="fas fa-list"></i>
 			</button>
 			<h3 styleName="background">{caption}</h3>
-			{pastDue ? <h5>DueImage!</h5> : null}
+			{pastDue && !isCompleted ? (
+				<i className="fas fa-exclamation-circle"></i>
+			) : null}
 			{expand ? (
 				<>
 					<p>{description}</p>
@@ -80,17 +82,17 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				</>
 			) : null}
 			<button type="button" onClick={() => ToggleIsComplete(index)}>
-				V
+				<i className="far fa-check-circle"></i>
 			</button>
 			<button
 				type="button"
 				role="EditTodoForm"
 				onClick={() => setEditMode(!editMode)}
 			>
-				Pen
+				<i className="fas fa-pen"></i>
 			</button>
 			<button type="button" role="DeleteTodo" onClick={() => DeleteTodo(index)}>
-				X
+				<i className="far fa-trash-alt"></i>
 			</button>
 			<br />
 			{editMode ? (

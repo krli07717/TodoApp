@@ -10,6 +10,7 @@ interface TopBarProps {
 	ChangeLanguage: () => void;
 	TWLanguage: boolean;
 	ChangeTheme: () => void;
+	darkTheme: boolean;
 }
 
 const TopBar: React.FunctionComponent<TopBarProps> = ({
@@ -20,6 +21,7 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 	ChangeLanguage,
 	TWLanguage,
 	ChangeTheme,
+	darkTheme,
 }) => {
 	return (
 		<div style={{ visibility: ShowTopBarState ? "visible" : "hidden" }}>
@@ -33,14 +35,14 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 				{TWLanguage ? "En" : "繁"}
 			</button>
 			<button type="button" onClick={() => ChangeTheme()}>
-				🌙
+				<i className={darkTheme ? "fas fa-sun" : "fas fa-moon"}></i>
 			</button>
 			<button
 				onClick={() =>
 					window.open("https://github.com/krli07717/TodoApp", "_blank")
 				}
 			>
-				{"</>"}
+				<i className="fas fa-code"></i>
 			</button>
 		</div>
 	);

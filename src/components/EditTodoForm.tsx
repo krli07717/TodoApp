@@ -97,7 +97,7 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({
 					}
 				}}
 			>
-				V
+				<i className="fas fa-check"></i>
 			</button>
 			<button
 				type="button"
@@ -105,7 +105,7 @@ const EditTodoForm: React.FunctionComponent<EditTodoFormProps> = ({
 					SetEditMode(false);
 				}}
 			>
-				X
+				<i className="fas fa-times"></i>
 			</button>
 		</form>
 	);

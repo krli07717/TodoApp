@@ -9,7 +9,7 @@ const ShowTopBarButton: React.FunctionComponent<ShowTopBarButtonProps> = ({
 }) => {
 	return (
 		<button type="button" role="ShowTopBarButton" onClick={() => ShowTopBar()}>
-			...
+			<i className="fas fa-ellipsis-v"></i>
 		</button>
 	);
 };

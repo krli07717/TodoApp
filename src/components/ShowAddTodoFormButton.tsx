@@ -13,7 +13,7 @@ const ShowAddTodoFormButton: React.FunctionComponent<ShowAddTodoFormButtonProps>
 			role="ShowAddTodoFormButton"
 			onClick={() => ShowAddTodoForm()}
 		>
-			+
+			<i className="fas fa-plus"></i>
 		</button>
 	);
 };
