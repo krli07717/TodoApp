@@ -13,3 +13,25 @@ html[dark-theme="false"] {
 	background-color: var(--background-color);
 	font-size: 15px;
 }
+
+.app-components {
+	margin: 0 auto;
+	padding: 3% 20%;
+	justify-content: center;
+}
+
+/*tablet*/
+@media screen and (min-width: 481) and (max-width: 1024px) {
+	.app-components {
+		margin: 0 auto;
+		padding: 5% 5%;
+	}
+}
+
+/*phone*/
+@media screen and (max-width: 480px) {
+	.app-components {
+		margin: 0 auto;
+		padding: 5% 5%;
+	}
+}

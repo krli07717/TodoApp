@@ -1,0 +1,20 @@
+.topbar-div {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	margin: auto;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: auto;
+	transition: top 0.3s;
+	background: rgba(123, 156, 153, 0.5);
+}
+
+.topbar-children {
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+}

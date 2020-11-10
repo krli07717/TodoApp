@@ -46,20 +46,44 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 	const [editMode, setEditMode] = useState<boolean>(false);
 
 	return (
-		<>
+		<div styleName="todo-div">
 			<button
 				type="button"
 				role="expandTodo"
+				styleName="todo-children"
 				onClick={() => {
 					setExpand(!expand);
 				}}
 			>
 				<i className="fas fa-list"></i>
 			</button>
-			<h3 styleName="background">{caption}</h3>
 			{pastDue && !isCompleted ? (
-				<i className="fas fa-exclamation-circle"></i>
+				<i styleName="todo-children" className="fas fa-exclamation-circle"></i>
 			) : null}
+			<h3 styleName="background todo-children todo-caption">{caption}</h3>
+			<button
+				type="button"
+				styleName="todo-children"
+				onClick={() => ToggleIsComplete(index)}
+			>
+				<i className="far fa-check-circle"></i>
+			</button>
+			<button
+				type="button"
+				role="EditTodoForm"
+				styleName="todo-children"
+				onClick={() => setEditMode(!editMode)}
+			>
+				<i className="fas fa-pen"></i>
+			</button>
+			<button
+				type="button"
+				role="DeleteTodo"
+				styleName="todo-children"
+				onClick={() => DeleteTodo(index)}
+			>
+				<i className="far fa-trash-alt"></i>
+			</button>
 			{expand ? (
 				<>
 					<p>{description}</p>
@@ -81,19 +105,6 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 					<p>Done_{isCompleted.toString()}</p>
 				</>
 			) : null}
-			<button type="button" onClick={() => ToggleIsComplete(index)}>
-				<i className="far fa-check-circle"></i>
-			</button>
-			<button
-				type="button"
-				role="EditTodoForm"
-				onClick={() => setEditMode(!editMode)}
-			>
-				<i className="fas fa-pen"></i>
-			</button>
-			<button type="button" role="DeleteTodo" onClick={() => DeleteTodo(index)}>
-				<i className="far fa-trash-alt"></i>
-			</button>
 			<br />
 			{editMode ? (
 				<EditTodoForm
@@ -107,7 +118,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 					EditTodoArray={EditTodoArray}
 				/>
 			) : null}
-		</>
+		</div>
 	);
 };
 

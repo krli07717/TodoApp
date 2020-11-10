@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import ShowTopBarButton from "../components/ShowTopBarButton";
+// import ShowTopBarButton from "../components/ShowTopBarButton";
 import ShowAddTodoFormButton from "../components/ShowAddTodoFormButton";
 import TopBar from "../components/TopBar";
 import TodosTable from "../components/TodosTable";
@@ -115,13 +115,13 @@ const App: React.FunctionComponent = () => {
 		localStorage.setItem("TODOS", JSON.stringify(newTodosArray));
 	};
 
-	const [showTopBarState, setShowTopBarState] = useState<boolean>(false);
+	// const [showTopBarState, setShowTopBarState] = useState<boolean>(false);
 
 	const [showAddTodoFormState, setShowAddTodoForm] = useState<boolean>(false);
 
-	const showTopBar = () => {
-		setShowTopBarState(!showTopBarState);
-	};
+	// const showTopBar = () => {
+	// 	setShowTopBarState(!showTopBarState);
+	// };
 
 	const showAddTodoForm = () => {
 		setShowAddTodoForm(!showAddTodoFormState);
@@ -182,7 +182,7 @@ const App: React.FunctionComponent = () => {
 	};
 
 	return (
-		<>
+		<div styleName="app-components">
 			<LanguageContext.Provider
 				value={
 					(languagePreference ? JSON.parse(languagePreference) : TWLanguage)
@@ -190,20 +190,21 @@ const App: React.FunctionComponent = () => {
 						: languages.en
 				}
 			>
-				<ShowTopBarButton ShowTopBar={showTopBar} />
+				{
+					// <ShowTopBarButton ShowTopBar={showTopBar} />
+				}
 				<br />
 				<TopBar
 					SelectByDone={selectByDone}
 					SelectSortMethod={selectSortMethod}
 					onSearchChange={onSearchChange}
-					ShowTopBarState={showTopBarState}
+					// ShowTopBarState={showTopBarState}
 					ChangeLanguage={changeLanguage}
 					TWLanguage={TWLanguage}
 					ChangeTheme={changeTheme}
 					darkTheme={darkTheme}
 				/>
 				<br />
-				<h3 styleName="background">CSS Here</h3>
 				<TodosTable
 					SelectByDoneState={doneState}
 					SelectSortMethodState={sortMethodState}
@@ -224,7 +225,7 @@ const App: React.FunctionComponent = () => {
 					/>
 				) : null}
 			</LanguageContext.Provider>
-		</>
+		</div>
 	);
 };
 

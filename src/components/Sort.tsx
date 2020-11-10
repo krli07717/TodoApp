@@ -14,7 +14,9 @@ const Sort: React.FunctionComponent<SortProps> = ({
 	const language = useContext(LanguageContext);
 	return (
 		<>
-			<label>{language.sortBy}</label>
+			{
+				// <label>{language.sortBy}</label>
+			}
 			<select onChange={SelectByDone}>
 				<option value="All Tasks">{language.sortAllTask}</option>
 				<option value="Done">{language.Done}</option>

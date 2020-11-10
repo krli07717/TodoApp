@@ -13,3 +13,31 @@ html[dark-theme="false"] {
 	background-color: var(--background-color);
 	font-size: 15px;
 }
+
+.todo-div {
+	padding: 0.3rem 0;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.todo-children {
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	justify-content: center;
+}
+
+.todo-caption {
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 50%;
+}
+
+.new-todo-button-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}

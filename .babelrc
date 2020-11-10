@@ -6,7 +6,8 @@
   ],
   "plugins": [
     ["@dr.pogodin/react-css-modules", {
-      "webpackHotModuleReloading": true
+      "webpackHotModuleReloading": true,
+      "autoResolveMultipleImports": true,
     }],
     [
       "@babel/plugin-transform-runtime",
