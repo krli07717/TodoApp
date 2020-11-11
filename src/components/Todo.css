@@ -36,8 +36,29 @@ html[dark-theme="false"] {
 	width: 50%;
 }
 
+.todo-description {
+	text-align: left;
+	word-wrap: break-word;
+	left: 0;
+	width: 56%;
+}
+
 .new-todo-button-div {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+}
+
+.new-todo-form-div {
+	width: 100%;
+	text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+	.todo-description {
+		text-align: left;
+		word-wrap: break-word;
+		left: 0;
+		width: 66%;
+	}
 }

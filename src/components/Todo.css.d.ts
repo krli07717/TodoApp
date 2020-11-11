@@ -3,8 +3,10 @@
 interface CssExports {
   'background': string;
   'new-todo-button-div': string;
+  'new-todo-form-div': string;
   'todo-caption': string;
   'todo-children': string;
+  'todo-description': string;
   'todo-div': string;
 }
 export const cssExports: CssExports;

@@ -86,7 +86,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 			</button>
 			{expand ? (
 				<>
-					<p>{description}</p>
+					<p styleName="todo-children todo-description">{description}</p>
 					{due !== "" ? (
 						<h6>
 							{language.Due}:

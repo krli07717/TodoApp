@@ -21,7 +21,7 @@ const languages = {
 		sortAllTask: "所有",
 		Done: "已完成",
 		ToDo: "未完成",
-		AddedDate: "新增日期",
+		AddedDate: "新增日",
 		Due: "期限",
 		Caption: "標題",
 		SearchHere: "搜尋..",

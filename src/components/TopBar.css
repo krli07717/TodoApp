@@ -1,4 +1,5 @@
 .topbar-div {
+	white-space: nowrap;
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -17,4 +18,5 @@
 	margin: 0 auto;
 	display: inline-block;
 	text-align: center;
+	width: auto;
 }
