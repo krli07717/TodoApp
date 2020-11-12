@@ -11,7 +11,6 @@
 	overflow-y: auto;
 	height: auto;
 	transition: top 0.3s;
-	background: rgba(123, 156, 153, 0.5);
 }
 
 .topbar-children {
@@ -19,4 +18,10 @@
 	display: inline-block;
 	text-align: center;
 	width: auto;
+}
+
+@media screen and (max-width: 480px) {
+	.topbar-div {
+		top: 0;
+	}
 }

@@ -27,8 +27,6 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 	return (
 		<div styleName="topbar-div">
 			<div styleName="topbar-children">
-				<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
-				<SearchBar onSearchChange={onSearchChange} />
 				<button
 					type="button"
 					role="ChangeLanguage"
@@ -52,6 +50,9 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 				>
 					<i className="fas fa-code"></i>
 				</button>
+				<br />
+				<Sort SelectByDone={SelectByDone} SelectSortMethod={SelectSortMethod} />
+				<SearchBar onSearchChange={onSearchChange} />
 			</div>
 		</div>
 	);

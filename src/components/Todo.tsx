@@ -85,8 +85,8 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				<i className="far fa-trash-alt"></i>
 			</button>
 			{expand ? (
-				<>
-					<p styleName="todo-children todo-description">{description}</p>
+				<div styleName="todo-children todo-description">
+					<p>{description}</p>
 					{due !== "" ? (
 						<h6>
 							{language.Due}:
@@ -103,7 +103,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 						{language.AddedDate}:{addedDate.slice(5)}
 					</h6>
 					<p>Done_{isCompleted.toString()}</p>
-				</>
+				</div>
 			) : null}
 			<br />
 			{editMode ? (
