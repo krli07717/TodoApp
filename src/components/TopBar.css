@@ -20,6 +20,9 @@
 	width: auto;
 }
 
+.topbar-button {
+}
+
 @media screen and (max-width: 480px) {
 	.topbar-div {
 		top: 0;

@@ -2,8 +2,10 @@
 // Please do not change this file!
 interface CssExports {
   'background': string;
+  'completed': string;
   'new-todo-button-div': string;
   'new-todo-form-div': string;
+  'pastDue': string;
   'todo-caption': string;
   'todo-children': string;
   'todo-description': string;

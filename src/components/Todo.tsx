@@ -60,7 +60,17 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 			{pastDue && !isCompleted ? (
 				<i styleName="todo-children" className="fas fa-exclamation-circle"></i>
 			) : null}
-			<h3 styleName="background todo-children todo-caption">{caption}</h3>
+			<h3
+				styleName={
+					isCompleted
+						? "background todo-children todo-caption completed"
+						: pastDue
+						? "background todo-children todo-caption pastDue"
+						: "background todo-children todo-caption"
+				}
+			>
+				{caption}
+			</h3>
 			<button
 				type="button"
 				styleName="todo-children"
@@ -102,7 +112,6 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 					<h6>
 						{language.AddedDate}:{addedDate.slice(5)}
 					</h6>
-					<p>Done_{isCompleted.toString()}</p>
 				</div>
 			) : null}
 			<br />

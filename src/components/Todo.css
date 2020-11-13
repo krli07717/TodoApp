@@ -17,6 +17,7 @@ html[dark-theme="false"] {
 	text-align: center;
 	align-items: center;
 	justify-content: center;
+	letter-spacing: 0.07em;
 }
 
 .todo-children {
@@ -49,13 +50,21 @@ html[dark-theme="false"] {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	padding: 2% 2%;
+	padding: 2% 0;
 }
 
 .new-todo-form-div {
 	color: var(--color);
 	width: 100%;
 	text-align: center;
+}
+
+.pastDue {
+	color: red;
+}
+
+.completed {
+	text-decoration: line-through;
 }
 
 @media screen and (max-width: 480px) {

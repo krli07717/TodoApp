@@ -29,21 +29,21 @@ const TopBar: React.FunctionComponent<TopBarProps> = ({
 			<div styleName="topbar-children">
 				<button
 					type="button"
-					role="ChangeLanguage"
-					styleName="topbar-children"
-					onClick={() => ChangeLanguage()}
-				>
-					{TWLanguage ? "En" : "繁"}
-				</button>
-				<button
-					type="button"
-					styleName="topbar-children"
+					styleName="topbar-children topbar-button"
 					onClick={() => ChangeTheme()}
 				>
 					<i className={darkTheme ? "fas fa-sun" : "fas fa-moon"}></i>
 				</button>
 				<button
-					styleName="topbar-children"
+					type="button"
+					role="ChangeLanguage"
+					styleName="topbar-children topbar-button"
+					onClick={() => ChangeLanguage()}
+				>
+					{TWLanguage ? "En" : "繁"}
+				</button>
+				<button
+					styleName="topbar-children topbar-button"
 					onClick={() =>
 						window.open("https://github.com/krli07717/TodoApp", "_blank")
 					}
