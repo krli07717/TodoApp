@@ -59,7 +59,7 @@ const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({
 					role="addTodo"
 					onClick={() => {
 						SetKeyOfNewTodo();
-						console.log(`todoKey: ${todoKey}`);
+						// console.log(`todoKey: ${todoKey}`);
 						let newFormElements: ITodoProps | string;
 						//to avoid 'error: object is possibly null'
 						if (

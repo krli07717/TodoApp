@@ -126,7 +126,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 					}
 				})
 				.map((filteredTodo) => {
-					console.log(`filteredTodo: ${filteredTodo}`);
+					// console.log(`filteredTodo: ${filteredTodo}`);
 					const {
 						key,
 						index,

@@ -68,27 +68,27 @@ const App: React.FunctionComponent = () => {
 	};
 
 	const addNewTodoToArray = (childNewForm: ITodoProps) => {
-		console.log("childNewForm:");
-		console.log(childNewForm); //if is not initialNewForm, then success passing data from child to parent component
-		console.log("todosArray - nothing done");
-		console.log(todosArray);
+		// console.log("childNewForm:");
+		// console.log(childNewForm); //if is not initialNewForm, then success passing data from child to parent component
+		// console.log("todosArray - nothing done");
+		// console.log(todosArray);
 		const newTodosArray = [...todosArray, childNewForm]; //How one should update the array with useState(?). todosArray is async, newTodosArray is sync
-		console.log("newTodosArray - setup");
-		console.log(newTodosArray);
-		console.log("todosArray - after new is setup");
-		console.log(todosArray);
+		// console.log("newTodosArray - setup");
+		// console.log(newTodosArray);
+		// console.log("todosArray - after new is setup");
+		// console.log(todosArray);
 		setTodosArray(newTodosArray);
-		console.log("newTodosArray - reset array");
-		console.log(newTodosArray);
-		console.log("todosArray - reset array");
-		console.log(todosArray);
+		// console.log("newTodosArray - reset array");
+		// console.log(newTodosArray);
+		// console.log("todosArray - reset array");
+		// console.log(todosArray);
 		setShowAddTodoForm(!showAddTodoFormState);
 		localStorage.setItem("TODOS", JSON.stringify(newTodosArray));
 	};
 
 	const toggleIsComplete = (index: ITodoProps["index"]) => {
-		console.log(`filtered by index${index}:`);
-		console.log(todosArray.filter((todo) => todo.index === index)); //how to get updated todosArray since setTodosArray() does not update itself immediately?
+		// console.log(`filtered by index${index}:`);
+		// console.log(todosArray.filter((todo) => todo.index === index)); //how to get updated todosArray since setTodosArray() does not update itself immediately?
 		const newTodosArray = [...todosArray];
 		for (const todo of newTodosArray) {
 			if (todo.index === index) {
@@ -100,8 +100,8 @@ const App: React.FunctionComponent = () => {
 	};
 
 	const deleteTodo = (index: ITodoProps["index"]) => {
-		console.log(`todosArray before deleting, newTodosArray`);
-		console.log(todosArray);
+		// console.log(`todosArray before deleting, newTodosArray`);
+		// console.log(todosArray);
 		const newTodosArray = [...todosArray];
 		for (let i = 0; i < newTodosArray.length; i++) {
 			if (newTodosArray[i].index === index) {
@@ -109,9 +109,9 @@ const App: React.FunctionComponent = () => {
 			}
 		} // not the best practice since accessing by index now takes O(n) instead of O(1)
 		setTodosArray(newTodosArray);
-		console.log(`todosArray after deleting, newTodosArray`);
-		console.log(todosArray);
-		console.log(newTodosArray);
+		// console.log(`todosArray after deleting, newTodosArray`);
+		// console.log(todosArray);
+		// console.log(newTodosArray);
 		localStorage.setItem("TODOS", JSON.stringify(newTodosArray));
 	};
 
@@ -128,8 +128,8 @@ const App: React.FunctionComponent = () => {
 	};
 
 	const editTodoArray = (editedFormElements: IeditedFormElements) => {
-		console.log("success!");
-		console.log(editedFormElements);
+		// console.log("success!");
+		// console.log(editedFormElements);
 		const {
 			index,
 			editedCaption,
@@ -146,11 +146,11 @@ const App: React.FunctionComponent = () => {
 				todo.isCompleted = editedIsDone;
 			}
 		}
-		console.log("newTodosArray after reassignment");
-		console.log(newTodosArray);
+		// console.log("newTodosArray after reassignment");
+		// console.log(newTodosArray);
 		setTodosArray(newTodosArray);
-		console.log("todosArray after reassignment");
-		console.log(todosArray);
+		// console.log("todosArray after reassignment");
+		// console.log(todosArray);
 		localStorage.setItem("TODOS", JSON.stringify(newTodosArray));
 	};
 

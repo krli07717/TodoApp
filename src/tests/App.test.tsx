@@ -101,8 +101,6 @@ describe("App", () => {
 		screen.queryByText("test title");
 
 		//search
-		const ShowTopBarButton = screen.getByRole("ShowTopBarButton");
-		userEvent.click(ShowTopBarButton);
 
 		const SearchTodoInput = screen.getByRole("SearchTodo");
 		userEvent.type(SearchTodoInput, "not finding me");
@@ -123,13 +121,8 @@ describe("App", () => {
 
 	it("allows switching language and saves language preference to localstorage", () => {
 		const { getByRole } = render(<App />);
-		const ShowTopBarButton = screen.getByRole("ShowTopBarButton");
+		// const ShowTopBarButton = screen.getByRole("ShowTopBarButton");
 		const setItemLS = jest.spyOn(window.localStorage.__proto__, "setItem");
-
-		userEvent.click(ShowTopBarButton);
-		//shows 排序, 搜尋..
-		expect(screen.queryByText("Sort")).not.toBeInTheDocument();
-		expect(screen.queryByText("Search..")).not.toBeInTheDocument();
 
 		const ChangeLanguageButton = screen.getByRole("ChangeLanguage");
 		userEvent.click(ChangeLanguageButton);
