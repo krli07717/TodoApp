@@ -2,6 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 import { useContext } from "react";
 import { LanguageContext } from "./languages";
+import "./Todo.css";
 
 interface IeditedFormElements {
 	index: string;
@@ -164,7 +165,9 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 					);
 				})}
 			{NoResults !== 0 && NoResults === TodosArray.length ? (
-				<h3 style={{ textAlign: "center" }}>{language.NoResultsFound}</h3>
+				<h3 styleName="no-result" style={{ textAlign: "center" }}>
+					{language.NoResultsFound}
+				</h3>
 			) : null}
 		</>
 	);

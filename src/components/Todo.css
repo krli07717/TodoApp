@@ -67,6 +67,10 @@ html[dark-theme="false"] {
 	text-decoration: line-through;
 }
 
+.no-result {
+	color: var(--color);
+}
+
 @media screen and (max-width: 480px) {
 	.todo-description {
 		text-align: left;
