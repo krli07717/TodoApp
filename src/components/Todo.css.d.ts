@@ -5,6 +5,7 @@ interface CssExports {
   'completed': string;
   'new-todo-button-div': string;
   'new-todo-form-div': string;
+  'no-result': string;
   'pastDue': string;
   'todo-caption': string;
   'todo-children': string;
