@@ -1,0 +1,77 @@
+html[dark-theme="true"] {
+	--color: white;
+}
+
+html[dark-theme="false"] {
+	--color: black;
+}
+
+.background {
+	color: var(--color);
+	font-size: 15px;
+}
+
+.todo-div {
+	color: var(--color);
+	padding: 0.3rem 0;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 0.07em;
+}
+
+.todo-children {
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	justify-content: center;
+}
+
+.todo-caption {
+	position: relative;
+	top: 0.4rem;
+	left: 0.35rem;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 50%;
+}
+
+.todo-description {
+	text-align: left;
+	word-wrap: break-word;
+	left: 0;
+	width: 55%;
+	line-height: 0.9;
+}
+
+.new-todo-button-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 2% 0;
+}
+
+.new-todo-form-div {
+	color: var(--color);
+	width: 100%;
+	text-align: center;
+}
+
+.pastDue {
+	color: red;
+}
+
+.completed {
+	text-decoration: line-through;
+}
+
+@media screen and (max-width: 480px) {
+	.todo-description {
+		text-align: left;
+		word-wrap: break-word;
+		left: 0;
+		width: 67%;
+	}
+}

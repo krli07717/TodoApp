@@ -1,6 +1,6 @@
-import path from "path";
-import webpack from "webpack";
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import * as path from "path";
+import * as webpack from "webpack";
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 const config: webpack.Configuration = {
   entry: "./src/index.tsx",
@@ -19,6 +19,21 @@ const config: webpack.Configuration = {
             ],
           },
         },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-modules-typescript-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[path]___[name]__[local]___[hash:base64:5]",
+              },
+            },
+          },
+        ],
       },
     ],
   },

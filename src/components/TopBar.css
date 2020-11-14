@@ -1,0 +1,30 @@
+.topbar-div {
+	white-space: nowrap;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	margin: auto;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: auto;
+	transition: top 0.3s;
+}
+
+.topbar-children {
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	width: auto;
+}
+
+.topbar-button {
+}
+
+@media screen and (max-width: 480px) {
+	.topbar-div {
+		top: 0;
+	}
+}
