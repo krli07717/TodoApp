@@ -81,7 +81,9 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 			}
 			{TodosArray.length === 0 ? (
 				<div>
-					<h4 style={{ textAlign: "center" }}>{language.AddYourFirstTodo}</h4>
+					<h4 styleName="no-todoarray" style={{ textAlign: "center" }}>
+						{language.AddYourFirstTodo}
+					</h4>
 				</div>
 			) : null}
 			{TodosArray.filter((todoBySearchText) => {
