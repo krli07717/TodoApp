@@ -71,6 +71,10 @@ html[dark-theme="false"] {
 	color: var(--color);
 }
 
+.no-todoarray {
+	color: var(--color);
+}
+
 @media screen and (max-width: 480px) {
 	.todo-description {
 		text-align: left;
