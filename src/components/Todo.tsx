@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useContext } from "react";
-import EditTodoForm from "./EditTodoForm";
+import { useState, useContext, lazy, Suspense } from "react";
+// import EditTodoForm from "./EditTodoForm";
 import { LanguageContext } from "./languages";
 import "./Todo.css";
 
@@ -39,7 +39,12 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 	pastDue,
 	EditTodoArray,
 }) => {
+
 	const language = useContext(LanguageContext);
+
+	const renderLoader = () => <p styleName="loading"> {language.Loading}</p>;  
+
+	const EditTodoForm = lazy(()=> import('./EditTodoForm'));
 
 	const [expand, setExpand] = useState<boolean>(false); //set to false again when rerender (e.g. after search text/sort)
 
@@ -116,16 +121,18 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 			) : null}
 			<br />
 			{editMode ? (
-				<EditTodoForm
-					key={key}
-					index={index}
-					caption={caption}
-					description={description}
-					due={due}
-					isCompleted={isCompleted}
-					SetEditMode={setEditMode}
-					EditTodoArray={EditTodoArray}
-				/>
+				<Suspense fallback={renderLoader()}>
+					<EditTodoForm
+						key={key}
+						index={index}
+						caption={caption}
+						description={description}
+						due={due}
+						isCompleted={isCompleted}
+						SetEditMode={setEditMode}
+						EditTodoArray={EditTodoArray}
+					/>
+				</Suspense>
 			) : null}
 		</div>
 	);

@@ -75,6 +75,11 @@ html[dark-theme="false"] {
 	color: var(--color);
 }
 
+.loading {
+	color: var(--color);
+	text-align: center;
+}
+
 @media screen and (max-width: 480px) {
 	.todo-description {
 		text-align: left;

@@ -15,6 +15,7 @@ const languages = {
 		ToDoTitle: "Title",
 		Description: "Description",
 		Completed: "Completed",
+		Loading: "Loading.."
 	},
 	tw: {
 		sortBy: "排序-",
@@ -30,6 +31,7 @@ const languages = {
 		ToDoTitle: "標題",
 		Description: "內容",
 		Completed: "已完成",
+		Loading: "下載中.."
 	},
 };
 
