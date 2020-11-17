@@ -3,6 +3,7 @@
 interface CssExports {
   'app-components': string;
   'background': string;
+  'loading': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

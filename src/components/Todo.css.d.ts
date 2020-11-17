@@ -3,6 +3,7 @@
 interface CssExports {
   'background': string;
   'completed': string;
+  'loading': string;
   'new-todo-button-div': string;
   'new-todo-form-div': string;
   'no-result': string;

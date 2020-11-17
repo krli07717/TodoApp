@@ -1,10 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext, lazy, Suspense } from "react";
 // import ShowTopBarButton from "../components/ShowTopBarButton";
+
 import ShowAddTodoFormButton from "../components/ShowAddTodoFormButton";
 import TopBar from "../components/TopBar";
-import TodosTable from "../components/TodosTable";
-import AddTodoModal from "../components/AddTodoModal";
+
+// import TodosTable from "../components/TodosTable";
+
+// import AddTodoModal from "../components/AddTodoModal";
 import { languages, LanguageContext } from "../components/languages";
 import "./App.css";
 
@@ -30,6 +33,15 @@ interface ITodoProps {
 }
 
 const App: React.FunctionComponent = () => {
+
+	const TodosTable = lazy(()=> import('../components/TodosTable'));
+
+	const AddTodoModal = lazy(()=> import('../components/AddTodoModal'));
+
+	const language = useContext(LanguageContext);
+
+	const renderLoader = () => <p styleName="loading"> {language.Loading}</p>;   
+
 	const [doneState, setDoneState] = useState<DoneState>("All Tasks");
 
 	const [sortMethodState, setSortMethodState] = useState<SortMethodState>(
@@ -205,24 +217,28 @@ const App: React.FunctionComponent = () => {
 					darkTheme={darkTheme}
 				/>
 				<br />
-				<TodosTable
-					SelectByDoneState={doneState}
-					SelectSortMethodState={sortMethodState}
-					SearchText={searchText}
-					TodosArray={todosArray}
-					ToggleIsComplete={toggleIsComplete}
-					DeleteTodo={deleteTodo}
-					EditTodoArray={editTodoArray}
-				/>
+				<Suspense fallback={renderLoader}>
+					<TodosTable
+						SelectByDoneState={doneState}
+						SelectSortMethodState={sortMethodState}
+						SearchText={searchText}
+						TodosArray={todosArray}
+						ToggleIsComplete={toggleIsComplete}
+						DeleteTodo={deleteTodo}
+						EditTodoArray={editTodoArray}
+					/>
+				</Suspense>
 				<br />
 				<ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm} />
 				{showAddTodoFormState ? (
-					<AddTodoModal
-						addNewTodoToArray={addNewTodoToArray}
-						SetKeyOfNewTodo={setKeyOfNewTodo}
-						todoKey={todoKey}
-						ShowAddTodoForm={showAddTodoForm}
-					/>
+					<Suspense fallback={renderLoader()}>
+						<AddTodoModal
+							addNewTodoToArray={addNewTodoToArray}
+							SetKeyOfNewTodo={setKeyOfNewTodo}
+							todoKey={todoKey}
+							ShowAddTodoForm={showAddTodoForm}
+						/>
+					</Suspense>
 				) : null}
 			</LanguageContext.Provider>
 		</div>
