@@ -5,4 +5,4 @@
   
   開發語言為Typescript及React(Hooks)，並有試用jest與react-testing-library試寫測試。效能方面以lighthouse檢測。
   
-  開發環境部份，Typescript React參考：https://bit.ly/32SJDwp
+  架設開發環境部份，Typescript React參考：https://bit.ly/32SJDwp
