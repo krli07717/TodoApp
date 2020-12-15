@@ -3,28 +3,7 @@ import { useState, useContext, lazy, Suspense } from "react";
 // import EditTodoForm from "./EditTodoForm";
 import { LanguageContext } from "./languages";
 import "./Todo.css";
-
-interface IeditedFormElements {
-	index: string;
-	editedCaption: string;
-	editedDescription: string;
-	editedDue: string;
-	editedIsDone: boolean;
-}
-
-interface TodoProps {
-	key: string;
-	index: string;
-	caption: string;
-	description: string;
-	addedDate: string;
-	due: string;
-	isCompleted: boolean;
-	ToggleIsComplete: (key: string) => void;
-	DeleteTodo: (key: string) => void;
-	pastDue: boolean;
-	EditTodoArray: (editedFormElements: IeditedFormElements) => void;
-}
+import { TodoProps } from "./interfaces";
 
 const Todo: React.FunctionComponent<TodoProps> = ({
 	key,
@@ -39,12 +18,11 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 	pastDue,
 	EditTodoArray,
 }) => {
-
 	const language = useContext(LanguageContext);
 
-	const renderLoader = () => <p styleName="loading"> {language.Loading}</p>;  
+	const renderLoader = () => <p styleName="loading"> {language.Loading}</p>;
 
-	const EditTodoForm = lazy(()=> import('./EditTodoForm'));
+	const EditTodoForm = lazy(() => import("./EditTodoForm"));
 
 	const [expand, setExpand] = useState<boolean>(false); //set to false again when rerender (e.g. after search text/sort)
 
@@ -57,7 +35,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				role="expandTodo"
 				styleName="todo-children"
 				onClick={() => {
-					setExpand(!expand);
+					setExpand((prevExpand) => !prevExpand);
 				}}
 			>
 				<i className="fas fa-list"></i>
@@ -87,7 +65,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				type="button"
 				role="EditTodoForm"
 				styleName="todo-children"
-				onClick={() => setEditMode(!editMode)}
+				onClick={() => setEditMode((prevEditmode) => !prevEditmode)}
 			>
 				<i className="fas fa-pen"></i>
 			</button>

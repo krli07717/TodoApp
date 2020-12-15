@@ -2,17 +2,7 @@ import React from "react";
 import Sort from "./Sort";
 import SearchBar from "./SearchBar";
 import "./TopBar.css";
-
-interface TopBarProps {
-	SelectByDone: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-	SelectSortMethod: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-	onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	// ShowTopBarState: boolean;
-	ChangeLanguage: () => void;
-	TWLanguage: boolean;
-	ChangeTheme: () => void;
-	darkTheme: boolean;
-}
+import { TopBarProps } from "./interfaces";
 
 const TopBar: React.FunctionComponent<TopBarProps> = ({
 	SelectByDone,
