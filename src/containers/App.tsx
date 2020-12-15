@@ -6,27 +6,9 @@ import TopBar from "../components/TopBar";
 
 import { languages, LanguageContext } from "../components/languages";
 import "./App.css";
-
+import { IeditedFormElements, ITodoProps } from "../components/interfaces";
 type DoneState = "All Tasks" | "Done" | "To Do";
 type SortMethodState = "Date Added" | "Caption" | "Due";
-
-interface IeditedFormElements {
-	index: string;
-	editedCaption: string;
-	editedDescription: string;
-	editedDue: string;
-	editedIsDone: boolean;
-}
-
-interface ITodoProps {
-	key: string;
-	index: string;
-	caption: string;
-	description: string;
-	addedDate: string;
-	due: string;
-	isCompleted: boolean;
-}
 
 const App: React.FunctionComponent = () => {
 	// React Lazy
@@ -67,7 +49,7 @@ const App: React.FunctionComponent = () => {
 		setShowAddTodoForm((prevAddFormState) => !prevAddFormState);
 	};
 
-	const [test, setTest] = useState<number>(1);
+	// const [test, setTest] = useState<number>(1);
 
 	//Language
 
@@ -217,8 +199,10 @@ const App: React.FunctionComponent = () => {
 				</Suspense>
 				<br />
 				<ShowAddTodoFormButton ShowAddTodoForm={showAddTodoForm} />
-				<p>{test.toString()}</p>
-				<button onClick={() => setTest((n) => n + 1)}>Test Me</button>
+				{
+					// <p>{test.toString()}</p>
+					// <button onClick={() => setTest((n) => n + 1)}>Test Me</button>
+				}
 				<div styleName={showAddTodoFormState ? "hideAddButton" : ""}>
 					<AddTodoModal
 						addNewTodoToArray={addNewTodoToArray}
