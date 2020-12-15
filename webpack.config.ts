@@ -38,6 +38,10 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
+    alias: {
+      "react-dom$": "react-dom/profiling",
+      "scheduler/tracing": "scheduler/tracing-profiling",
+    },
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {

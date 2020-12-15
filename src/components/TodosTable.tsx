@@ -3,34 +3,7 @@ import Todo from "./Todo";
 import { useContext } from "react";
 import { LanguageContext } from "./languages";
 import "./Todo.css";
-
-interface IeditedFormElements {
-	index: string;
-	editedCaption: string;
-	editedDescription: string;
-	editedDue: string;
-	editedIsDone: boolean;
-}
-
-interface ITodoProps {
-	key: string;
-	index: string;
-	caption: string;
-	description: string;
-	addedDate: string;
-	due: string;
-	isCompleted: boolean;
-}
-
-interface TodosTableProps {
-	SelectByDoneState: string;
-	SelectSortMethodState: string;
-	SearchText: string;
-	TodosArray: ITodoProps[];
-	ToggleIsComplete: (index: ITodoProps["index"]) => void;
-	DeleteTodo: (index: ITodoProps["index"]) => void;
-	EditTodoArray: (editedFormElements: IeditedFormElements) => void;
-}
+import { TodosTableProps } from "./interfaces";
 
 const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 	SelectByDoneState,
@@ -175,5 +148,8 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 		</>
 	);
 };
+
+//for eslint memo display name
+// TodosTable.displayName = "TodosTable";
 
 export default TodosTable;

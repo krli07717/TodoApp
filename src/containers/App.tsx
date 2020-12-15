@@ -181,6 +181,7 @@ const App: React.FunctionComponent = () => {
 
 	useEffect(() => {
 		localStorage.setItem("TODOS", JSON.stringify(todosArray));
+		console.log("useEffect by modified todosArray");
 	}, [todosArray]);
 
 	return (

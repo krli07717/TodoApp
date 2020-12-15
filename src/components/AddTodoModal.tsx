@@ -2,23 +2,7 @@ import React from "react";
 import { useRef, useContext } from "react";
 import { LanguageContext } from "./languages";
 import "./Todo.css";
-
-interface ITodoProps {
-	key: string;
-	index: string;
-	caption: string;
-	description: string;
-	addedDate: string;
-	due: string;
-	isCompleted: boolean;
-}
-
-interface AddTodoModalProps {
-	addNewTodoToArray: (childNewForm: ITodoProps) => void;
-	SetKeyOfNewTodo: () => void;
-	todoKey: number;
-	ShowAddTodoForm: () => void;
-}
+import { ITodoProps, AddTodoModalProps } from "./interfaces";
 
 const AddTodoModal: React.FunctionComponent<AddTodoModalProps> = ({
 	addNewTodoToArray,
