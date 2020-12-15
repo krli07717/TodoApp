@@ -57,7 +57,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				role="expandTodo"
 				styleName="todo-children"
 				onClick={() => {
-					setExpand(!expand);
+					setExpand(prevExpand=> !prevExpand);
 				}}
 			>
 				<i className="fas fa-list"></i>
@@ -87,7 +87,7 @@ const Todo: React.FunctionComponent<TodoProps> = ({
 				type="button"
 				role="EditTodoForm"
 				styleName="todo-children"
-				onClick={() => setEditMode(!editMode)}
+				onClick={() => setEditMode(prevEditmode => !prevEditmode)}
 			>
 				<i className="fas fa-pen"></i>
 			</button>

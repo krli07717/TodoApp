@@ -72,7 +72,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 		});
 	}
 
-	let NoResults = 0;
+	let NoResultsCounter = 0;
 
 	return (
 		<>
@@ -87,6 +87,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 				</div>
 			) : null}
 			{TodosArray.filter((todoBySearchText) => {
+				console.log("table being filtered");
 				if (
 					todoBySearchText.caption
 						.toLowerCase()
@@ -97,7 +98,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 				) {
 					return true;
 				} else {
-					NoResults++;
+					NoResultsCounter++;
 					return false;
 				}
 				return (
@@ -114,14 +115,14 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 						if (todoByDoneState.isCompleted === true) {
 							return true;
 						} else {
-							NoResults++;
+							NoResultsCounter++;
 							return false;
 						}
 					} else if (SelectByDoneState === "To Do") {
 						if (todoByDoneState.isCompleted === false) {
 							return true;
 						} else {
-							NoResults++;
+							NoResultsCounter++;
 							return false;
 						}
 					} else {
@@ -166,7 +167,7 @@ const TodosTable: React.FunctionComponent<TodosTableProps> = ({
 						/>
 					);
 				})}
-			{NoResults !== 0 && NoResults === TodosArray.length ? (
+			{NoResultsCounter !== 0 && NoResultsCounter === TodosArray.length ? (
 				<h3 styleName="no-result" style={{ textAlign: "center" }}>
 					{language.NoResultsFound}
 				</h3>

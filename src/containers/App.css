@@ -37,6 +37,10 @@ body {
 	text-align: center;
 }
 
+.hideAddButton {
+	display: none;
+}
+
 button {
 	border-radius: 4px;
 	background-color: rgba(247, 247, 226, 0.5);
